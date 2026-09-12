@@ -1,469 +1,1376 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vaibhav Sudhakar Ingle | AWS DevOps Engineer</title>
-    <meta name="description" content="Portfolio of Vaibhav Sudhakar Ingle, AWS DevOps Engineer specializing in Kubernetes, Terraform, CI/CD, and Cloud Infrastructure.">
-    
-    <!-- Fonts & Icons -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Tailwind CSS (CDN for zero-build GitHub Pages deployment) -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        mono: ['Fira Code', 'monospace'],
-                    },
-                    colors: {
-                        aws: '#FF9900',
-                        k8s: '#326CE5',
-                        tf: '#844FBA',
-                        darkBg: '#070b14',
-                        cardBg: 'rgba(15, 23, 42, 0.6)'
-                    }
-                }
-            }
-        }
-    </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Vaibhav Sudhakar Ingle — AWS DevOps Engineer portfolio showcasing AWS, Kubernetes, Terraform, CI/CD, DevSecOps, GitOps and FinOps projects.">
+  <meta name="author" content="Vaibhav Sudhakar Ingle">
+  <meta property="og:title" content="Vaibhav Sudhakar Ingle | AWS DevOps Engineer">
+  <meta property="og:description" content="AWS DevOps Engineer portfolio — Cloud Infrastructure, Kubernetes, Terraform, DevSecOps, GitOps and FinOps.">
+  <meta property="og:type" content="website">
 
-    <style>
-        body { background-color: #070b14; color: #e2e8f0; }
-        
-        /* Glassmorphism & Cards */
-        .glass {
-            background: rgba(15, 23, 42, 0.6);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(56, 189, 248, 0.1);
-        }
-        
-        .project-card {
-            transition: all 0.3s ease;
-        }
-        .project-card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(56, 189, 248, 0.4);
-            box-shadow: 0 10px 30px -10px rgba(56, 189, 248, 0.15);
-        }
+  <title>Vaibhav Sudhakar Ingle | AWS DevOps Engineer</title>
 
-        /* Neon Gradients */
-        .text-gradient {
-            background: linear-gradient(to right, #38bdf8, #818cf8, #FF9900);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/js/all.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
 
-        /* Floating Animation */
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            space: '#070b14',
+            aws: '#FF9900',
+            kube: '#326CE5',
+            purple: '#8B5CF6',
+            cyanx: '#22D3EE'
+          },
+          boxShadow: {
+            neon: '0 0 35px rgba(34,211,238,.15)',
+            orange: '0 0 35px rgba(255,153,0,.18)',
+            purple: '0 0 35px rgba(139,92,246,.18)'
+          }
         }
-        .animate-float { animation: float 6s ease-in-out infinite; }
-        
-        /* Grid Background */
-        .bg-grid {
-            background-size: 40px 40px;
-            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-                              linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-            mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 100%);
-            -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 100%);
-        }
+      }
+    }
+  </script>
 
-        /* Terminal Window */
-        .terminal-header { background: #1e1e1e; border-bottom: 1px solid #333; }
-        .terminal-body { background: #000; color: #0f0; }
-    </style>
+  <style>
+    :root {
+      --bg: #070b14;
+      --card: rgba(15, 23, 42, .60);
+      --border: rgba(34, 211, 238, .18);
+      --cyan: #22d3ee;
+      --purple: #8b5cf6;
+      --orange: #ff9900;
+      --blue: #326ce5;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background:
+        radial-gradient(circle at 10% 10%, rgba(34,211,238,.08), transparent 30%),
+        radial-gradient(circle at 90% 20%, rgba(139,92,246,.10), transparent 28%),
+        radial-gradient(circle at 50% 90%, rgba(255,153,0,.06), transparent 28%),
+        var(--bg);
+      color: #e2e8f0;
+      overflow-x: hidden;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    ::selection {
+      background: rgba(34,211,238,.35);
+      color: white;
+    }
+
+    .glass {
+      background: rgba(15, 23, 42, .58);
+      backdrop-filter: blur(22px);
+      -webkit-backdrop-filter: blur(22px);
+      border: 1px solid var(--border);
+    }
+
+    .grid-bg {
+      background-image:
+        linear-gradient(rgba(34,211,238,.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(34,211,238,.035) 1px, transparent 1px);
+      background-size: 42px 42px;
+      mask-image: linear-gradient(to bottom, black 0%, transparent 90%);
+      -webkit-mask-image: linear-gradient(to bottom, black 0%, transparent 90%);
+    }
+
+    .gradient-text {
+      background: linear-gradient(100deg, #22d3ee 0%, #8b5cf6 48%, #ff9900 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .gradient-border {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .gradient-border::before {
+      content: "";
+      position: absolute;
+      inset: -1px;
+      z-index: -1;
+      border-radius: inherit;
+      background: linear-gradient(120deg, rgba(34,211,238,.5), rgba(139,92,246,.25), rgba(255,153,0,.4));
+      opacity: .35;
+    }
+
+    .glow {
+      box-shadow:
+        0 0 25px rgba(34,211,238,.12),
+        inset 0 0 25px rgba(34,211,238,.025);
+    }
+
+    .nav-scrolled {
+      background: rgba(7,11,20,.86) !important;
+      border-color: rgba(34,211,238,.25) !important;
+      box-shadow: 0 10px 40px rgba(0,0,0,.3);
+    }
+
+    .hero-orb {
+      position: absolute;
+      border-radius: 999px;
+      filter: blur(1px);
+      pointer-events: none;
+      animation: float 8s ease-in-out infinite;
+    }
+
+    .orb-one {
+      width: 320px;
+      height: 320px;
+      background: rgba(34,211,238,.09);
+      top: 10%;
+      left: -120px;
+    }
+
+    .orb-two {
+      width: 420px;
+      height: 420px;
+      background: rgba(139,92,246,.08);
+      right: -180px;
+      top: 20%;
+      animation-delay: -3s;
+    }
+
+    .orb-three {
+      width: 240px;
+      height: 240px;
+      background: rgba(255,153,0,.07);
+      bottom: 5%;
+      left: 42%;
+      animation-delay: -5s;
+    }
+
+    @keyframes float {
+      0%,100% { transform: translate3d(0,0,0) scale(1); }
+      50% { transform: translate3d(0,-25px,0) scale(1.04); }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(35px);
+      transition: opacity .8s ease, transform .8s ease;
+    }
+
+    .reveal.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .project-card {
+      transform-style: preserve-3d;
+      transition: transform .25s ease, border-color .3s ease, box-shadow .3s ease;
+    }
+
+    .project-card:hover {
+      border-color: rgba(34,211,238,.45);
+      box-shadow:
+        0 20px 70px rgba(0,0,0,.35),
+        0 0 35px rgba(34,211,238,.09);
+    }
+
+    .project-card .project-icon {
+      transition: transform .4s ease;
+    }
+
+    .project-card:hover .project-icon {
+      transform: translateZ(25px) scale(1.08);
+    }
+
+    .tech-pill {
+      transition: transform .25s ease, border-color .25s ease, background .25s ease;
+    }
+
+    .tech-pill:hover {
+      transform: translateY(-3px);
+      border-color: rgba(34,211,238,.4);
+      background: rgba(34,211,238,.08);
+    }
+
+    .skill-item {
+      transition: .25s ease;
+    }
+
+    .skill-item:hover {
+      transform: translateY(-5px);
+      border-color: rgba(34,211,238,.35);
+      box-shadow: 0 12px 35px rgba(34,211,238,.07);
+    }
+
+    .metric-number {
+      font-variant-numeric: tabular-nums;
+    }
+
+    .typing-cursor {
+      display: inline-block;
+      width: 2px;
+      height: 1em;
+      margin-left: 5px;
+      background: var(--cyan);
+      vertical-align: -2px;
+      animation: blink .8s infinite;
+    }
+
+    @keyframes blink {
+      50% { opacity: 0; }
+    }
+
+    .pipeline-line {
+      background: linear-gradient(90deg, transparent, rgba(34,211,238,.8), transparent);
+      animation: pipeline 2.8s linear infinite;
+      background-size: 200% 100%;
+    }
+
+    @keyframes pipeline {
+      from { background-position: 200% 0; }
+      to { background-position: -200% 0; }
+    }
+
+    .pulse-dot {
+      animation: pulseDot 1.8s ease-in-out infinite;
+    }
+
+    @keyframes pulseDot {
+      0%,100% { box-shadow: 0 0 0 0 rgba(34,211,238,.45); }
+      50% { box-shadow: 0 0 0 8px rgba(34,211,238,0); }
+    }
+
+    .terminal-line {
+      opacity: 0;
+      animation: terminalIn .5s forwards;
+    }
+
+    .terminal-line:nth-child(2) { animation-delay: .2s; }
+    .terminal-line:nth-child(3) { animation-delay: .4s; }
+    .terminal-line:nth-child(4) { animation-delay: .6s; }
+    .terminal-line:nth-child(5) { animation-delay: .8s; }
+
+    @keyframes terminalIn {
+      to { opacity: 1; }
+    }
+
+    .timeline-line {
+      background: linear-gradient(to bottom, rgba(34,211,238,.8), rgba(139,92,246,.4), transparent);
+    }
+
+    .mobile-menu {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .35s ease;
+    }
+
+    .mobile-menu.open {
+      max-height: 500px;
+    }
+
+    #stars {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: -1;
+      opacity: .55;
+    }
+
+    .back-top {
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(10px);
+      transition: .3s ease;
+    }
+
+    .back-top.show {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+      }
+    }
+  </style>
 </head>
-<body class="antialiased relative overflow-x-hidden selection:bg-aws selection:text-white">
 
-    <!-- Background Grid -->
-    <div class="fixed inset-0 bg-grid z-[-1] pointer-events-none"></div>
+<body>
+  <canvas id="stars"></canvas>
+  <div class="fixed inset-0 grid-bg pointer-events-none z-[-2]"></div>
 
-    <!-- Navigation -->
-    <nav class="fixed w-full z-50 glass border-b-0 border-white/10 top-0 transition-all duration-300" id="navbar">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-20">
-                <a href="#" class="text-xl font-bold font-mono tracking-tighter">
-                    <span class="text-aws">V</span><span class="text-white">I</span><span class="text-k8s text-2xl leading-none">.</span>
-                </a>
-                <div class="hidden md:flex space-x-8 text-sm font-medium">
-                    <a href="#about" class="text-gray-300 hover:text-white transition-colors">About</a>
-                    <a href="#skills" class="text-gray-300 hover:text-white transition-colors">Skills</a>
-                    <a href="#projects" class="text-gray-300 hover:text-white transition-colors">Projects</a>
-                    <a href="#experience" class="text-gray-300 hover:text-white transition-colors">Experience</a>
-                </div>
-                <div class="hidden md:flex space-x-4">
-                    <a href="https://github.com/vaibhavingle2002" target="_blank" class="text-gray-400 hover:text-white text-xl transition"><i class="fab fa-github"></i></a>
-                    <a href="https://www.linkedin.com/in/vaibhav-ingle-82518a274/" target="_blank" class="text-gray-400 hover:text-white text-xl transition"><i class="fab fa-linkedin"></i></a>
-                </div>
-            </div>
+  <div class="hero-orb orb-one"></div>
+  <div class="hero-orb orb-two"></div>
+  <div class="hero-orb orb-three"></div>
+
+  <!-- NAVIGATION -->
+  <header id="navbar" class="fixed top-0 left-0 right-0 z-50 px-4 pt-4">
+    <nav class="max-w-7xl mx-auto glass rounded-2xl px-4 sm:px-6 py-3 transition-all duration-300">
+      <div class="flex items-center justify-between">
+        <a href="#home" class="flex items-center gap-3">
+          <div class="relative w-10 h-10 rounded-xl bg-slate-950 border border-cyan-400/30 flex items-center justify-center">
+            <span class="text-cyan-300 font-black text-sm">VI</span>
+            <span class="absolute -right-1 -top-1 w-2.5 h-2.5 rounded-full bg-cyan-400 pulse-dot"></span>
+          </div>
+          <div class="hidden sm:block">
+            <div class="font-bold text-white leading-none">Vaibhav Ingle</div>
+            <div class="text-[10px] text-slate-400 tracking-[.22em] mt-1">AWS DEVOPS ENGINEER</div>
+          </div>
+        </a>
+
+        <div class="hidden md:flex items-center gap-7 text-sm">
+          <a href="#home" class="nav-link text-cyan-300">Home</a>
+          <a href="#about" class="nav-link text-slate-400 hover:text-white transition">About</a>
+          <a href="#skills" class="nav-link text-slate-400 hover:text-white transition">Skills</a>
+          <a href="#projects" class="nav-link text-slate-400 hover:text-white transition">Projects</a>
+          <a href="#experience" class="nav-link text-slate-400 hover:text-white transition">Experience</a>
+          <a href="#contact" class="nav-link text-slate-400 hover:text-white transition">Contact</a>
         </div>
+
+        <div class="hidden md:block">
+          <a href="#contact" class="px-4 py-2 rounded-xl bg-gradient-to-r from-cyan-500/20 to-purple-500/20 border border-cyan-400/30 text-cyan-200 text-sm font-semibold hover:from-cyan-500/30 hover:to-purple-500/30 transition">
+            Let's Connect
+          </a>
+        </div>
+
+        <button id="menuBtn" class="md:hidden text-slate-200 text-xl w-10 h-10 rounded-xl border border-slate-700 bg-slate-900/70" aria-label="Open menu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+
+      <div id="mobileMenu" class="mobile-menu md:hidden">
+        <div class="pt-4 pb-2 border-t border-slate-800 mt-3 flex flex-col gap-1">
+          <a href="#home" class="mobile-link px-3 py-3 rounded-lg hover:bg-slate-800/70">Home</a>
+          <a href="#about" class="mobile-link px-3 py-3 rounded-lg hover:bg-slate-800/70">About</a>
+          <a href="#skills" class="mobile-link px-3 py-3 rounded-lg hover:bg-slate-800/70">Skills</a>
+          <a href="#projects" class="mobile-link px-3 py-3 rounded-lg hover:bg-slate-800/70">Projects</a>
+          <a href="#experience" class="mobile-link px-3 py-3 rounded-lg hover:bg-slate-800/70">Experience</a>
+          <a href="#contact" class="mobile-link px-3 py-3 rounded-lg hover:bg-slate-800/70">Contact</a>
+        </div>
+      </div>
     </nav>
+  </header>
 
-    <!-- Hero Section -->
-    <section class="relative min-h-screen flex items-center pt-20 overflow-hidden">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                
-                <!-- Left Content -->
+  <main>
+    <!-- HERO -->
+    <section id="home" class="min-h-screen relative flex items-center pt-28 pb-16">
+      <div class="max-w-7xl mx-auto px-5 sm:px-6 w-full">
+        <div class="grid lg:grid-cols-[1.05fr_.95fr] gap-12 lg:gap-16 items-center">
+
+          <div class="reveal">
+            <div class="inline-flex items-center gap-2 px-3 py-2 rounded-full glass border-cyan-400/25 text-xs text-cyan-200 mb-6">
+              <span class="w-2 h-2 rounded-full bg-emerald-400 pulse-dot"></span>
+              Open to New Opportunities
+            </div>
+
+            <div class="text-slate-400 text-lg mb-2">Hello, I'm</div>
+
+            <h1 class="text-5xl sm:text-6xl lg:text-7xl font-black tracking-tight leading-[.95]">
+              <span class="gradient-text">Vaibhav</span><br>
+              <span class="text-white">Sudhakar Ingle</span>
+            </h1>
+
+            <div class="mt-7 flex items-center gap-3 text-2xl sm:text-3xl font-bold">
+              <span class="text-white" id="typing"></span><span class="typing-cursor"></span>
+            </div>
+
+            <p class="mt-6 max-w-2xl text-slate-400 text-base sm:text-lg leading-8">
+              Building scalable, secure, and automated cloud infrastructure using
+              <span class="text-cyan-300">DevSecOps</span> and
+              <span class="text-purple-300">GitOps</span> practices across modern cloud environments.
+            </p>
+
+            <div class="mt-8 flex flex-wrap gap-3">
+              <a href="#projects" class="group px-6 py-3.5 rounded-xl font-bold text-sm text-white bg-gradient-to-r from-cyan-500 via-purple-500 to-orange-500 hover:shadow-neon transition-all">
+                View My Work
+                <i class="fa-solid fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+              </a>
+              <a href="https://github.com/vaibhavingle2002" target="_blank" rel="noopener noreferrer" class="px-6 py-3.5 rounded-xl font-bold text-sm text-slate-200 border border-slate-700 hover:border-cyan-400/50 hover:bg-cyan-400/5 transition">
+                <i class="fa-brands fa-github mr-2"></i>GitHub Profile
+              </a>
+            </div>
+
+            <div class="mt-8 flex flex-wrap gap-2 text-xs">
+              <span class="tech-pill px-3 py-2 rounded-lg glass text-slate-300">AWS</span>
+              <span class="tech-pill px-3 py-2 rounded-lg glass text-slate-300">Kubernetes</span>
+              <span class="tech-pill px-3 py-2 rounded-lg glass text-slate-300">Terraform</span>
+              <span class="tech-pill px-3 py-2 rounded-lg glass text-slate-300">CI/CD</span>
+              <span class="tech-pill px-3 py-2 rounded-lg glass text-slate-300">DevSecOps</span>
+              <span class="tech-pill px-3 py-2 rounded-lg glass text-slate-300">GitOps</span>
+            </div>
+          </div>
+
+          <!-- HERO VISUAL -->
+          <div class="reveal relative">
+            <div class="relative glass rounded-3xl p-5 sm:p-7 shadow-neon gradient-border">
+
+              <div class="flex items-center justify-between mb-7">
                 <div>
-                    <div class="inline-flex items-center space-x-2 glass px-3 py-1.5 rounded-full text-xs font-mono text-green-400 mb-6 border-green-400/20">
-                        <span class="relative flex h-2 w-2">
-                          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                          <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
-                        </span>
-                        <span>OPEN TO AWS DEVOPS / CLOUD OPPORTUNITIES</span>
-                    </div>
-                    
-                    <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight mb-4">
-                        Vaibhav Sudhakar Ingle
-                    </h1>
-                    <h2 class="text-2xl md:text-3xl font-mono text-gradient mb-6">
-                        > AWS DevOps Engineer_
-                    </h2>
-                    
-                    <p class="text-gray-400 text-lg mb-8 max-w-xl leading-relaxed">
-                        Building scalable, secure, and automated cloud infrastructure with AWS, Kubernetes, Terraform, DevSecOps, and GitOps.
-                    </p>
-                    
-                    <div class="flex flex-wrap gap-4">
-                        <a href="#projects" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-all shadow-lg shadow-blue-500/25">
-                            View Cloud Projects
-                        </a>
-                        <a href="mailto:devopsguyvaibhav888@gmail.com" class="glass text-white px-6 py-3 rounded-lg font-medium hover:bg-white/10 transition-all">
-                            Contact Me
-                        </a>
-                    </div>
+                  <div class="text-[10px] uppercase tracking-[.25em] text-cyan-300">Cloud Delivery System</div>
+                  <div class="text-white font-bold mt-1">DevOps Pipeline</div>
                 </div>
+                <div class="flex gap-1.5">
+                  <span class="w-2.5 h-2.5 rounded-full bg-red-400/70"></span>
+                  <span class="w-2.5 h-2.5 rounded-full bg-yellow-400/70"></span>
+                  <span class="w-2.5 h-2.5 rounded-full bg-green-400/70"></span>
+                </div>
+              </div>
 
-                <!-- Right Visual: Terminal -->
-                <div class="hidden lg:block animate-float">
-                    <div class="rounded-xl overflow-hidden glass shadow-2xl border border-gray-700">
-                        <div class="terminal-header px-4 py-2 flex items-center space-x-2">
-                            <div class="w-3 h-3 rounded-full bg-red-500"></div>
-                            <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
-                            <div class="w-3 h-3 rounded-full bg-green-500"></div>
-                            <span class="text-xs text-gray-400 ml-2 font-mono">vaibhav@aws-cloud: ~</span>
-                        </div>
-                        <div class="terminal-body p-6 font-mono text-sm h-64 flex flex-col justify-end">
-                            <p class="text-gray-400">$ kubectl get nodes --show-labels</p>
-                            <p class="text-white">NAME             STATUS   ROLES    AGE   VERSION   LABELS</p>
-                            <p class="text-gray-300">ip-192-168-1-10  Ready    <none>   45d   v1.28.2   env=production,tier=compute</p>
-                            <p class="text-gray-300">ip-192-168-1-11  Ready    <none>   45d   v1.28.2   env=production,tier=compute</p>
-                            <br>
-                            <p class="text-gray-400">$ terraform apply -auto-approve</p>
-                            <p class="text-tf">Apply complete! Resources: 14 added, 0 changed, 0 destroyed.</p>
-                            <p class="text-aws mt-2">Outputs: <br> load_balancer_dns = "prod-alb-892374.ap-south-1.elb.amazonaws.com"</p>
-                            <p class="text-green-400 mt-2"><span class="animate-pulse">_</span></p>
-                        </div>
+              <div class="relative">
+                <div class="absolute left-[11%] right-[11%] top-1/2 h-px pipeline-line"></div>
+
+                <div class="grid grid-cols-3 gap-3 relative">
+                  <div class="glass rounded-2xl p-4 text-center border-cyan-400/20">
+                    <div class="w-12 h-12 mx-auto rounded-xl bg-slate-950 border border-cyan-400/20 flex items-center justify-center text-cyan-300 text-xl">
+                      <i class="fa-solid fa-code"></i>
                     </div>
+                    <div class="mt-3 text-xs font-bold text-white">CODE</div>
+                    <div class="text-[10px] text-slate-500 mt-1">Git</div>
+                  </div>
+
+                  <div class="glass rounded-2xl p-4 text-center border-purple-400/20">
+                    <div class="w-12 h-12 mx-auto rounded-xl bg-slate-950 border border-purple-400/20 flex items-center justify-center text-purple-300 text-xl">
+                      <i class="fa-solid fa-gears"></i>
+                    </div>
+                    <div class="mt-3 text-xs font-bold text-white">BUILD</div>
+                    <div class="text-[10px] text-slate-500 mt-1">CI/CD</div>
+                  </div>
+
+                  <div class="glass rounded-2xl p-4 text-center border-orange-400/20">
+                    <div class="w-12 h-12 mx-auto rounded-xl bg-slate-950 border border-orange-400/20 flex items-center justify-center text-orange-300 text-xl">
+                      <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <div class="mt-3 text-xs font-bold text-white">SECURITY</div>
+                    <div class="text-[10px] text-slate-500 mt-1">DevSecOps</div>
+                  </div>
+
+                  <div class="glass rounded-2xl p-4 text-center border-blue-400/20">
+                    <div class="w-12 h-12 mx-auto rounded-xl bg-slate-950 border border-blue-400/20 flex items-center justify-center text-blue-300 text-xl">
+                      <i class="fa-solid fa-box"></i>
+                    </div>
+                    <div class="mt-3 text-xs font-bold text-white">CONTAINER</div>
+                    <div class="text-[10px] text-slate-500 mt-1">Docker</div>
+                  </div>
+
+                  <div class="glass rounded-2xl p-4 text-center border-cyan-400/20">
+                    <div class="w-12 h-12 mx-auto rounded-xl bg-slate-950 border border-cyan-400/20 flex items-center justify-center text-cyan-300 text-xl">
+                      <i class="fa-solid fa-dharmachakra"></i>
+                    </div>
+                    <div class="mt-3 text-xs font-bold text-white">DEPLOY</div>
+                    <div class="text-[10px] text-slate-500 mt-1">Kubernetes</div>
+                  </div>
+
+                  <div class="glass rounded-2xl p-4 text-center border-green-400/20">
+                    <div class="w-12 h-12 mx-auto rounded-xl bg-slate-950 border border-green-400/20 flex items-center justify-center text-green-300 text-xl">
+                      <i class="fa-solid fa-chart-line"></i>
+                    </div>
+                    <div class="mt-3 text-xs font-bold text-white">MONITOR</div>
+                    <div class="text-[10px] text-slate-500 mt-1">Observability</div>
+                  </div>
                 </div>
+              </div>
+
+              <div class="mt-6 rounded-2xl bg-black/25 border border-slate-800 p-4 font-mono text-xs">
+                <div class="flex items-center gap-2 mb-3 text-slate-500">
+                  <span class="text-cyan-400">$</span>
+                  <span>devops@vaibhav:~</span>
+                </div>
+                <div class="terminal-line text-cyan-300">$ terraform apply</div>
+                <div class="terminal-line text-slate-400">Infrastructure provisioning...</div>
+                <div class="terminal-line text-purple-300">Kubernetes platform ready</div>
+                <div class="terminal-line text-green-400">✓ deployment workflow completed</div>
+              </div>
             </div>
+          </div>
         </div>
+
+        <!-- METRICS -->
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 mt-12 reveal">
+          <div class="glass rounded-2xl p-5">
+            <div class="text-3xl font-black text-white"><span class="counter" data-target="5">0</span><span class="text-cyan-300">+</span></div>
+            <div class="text-xs text-slate-500 mt-1">Featured Projects</div>
+          </div>
+          <div class="glass rounded-2xl p-5">
+            <div class="text-3xl font-black text-white"><span class="counter" data-target="20">0</span><span class="text-purple-300">+</span></div>
+            <div class="text-xs text-slate-500 mt-1">Tools & Technologies</div>
+          </div>
+          <div class="glass rounded-2xl p-5">
+            <div class="text-3xl font-black text-white">AWS <span class="text-cyan-300">&</span> Azure</div>
+            <div class="text-xs text-slate-500 mt-1">Cloud Platforms</div>
+          </div>
+          <div class="glass rounded-2xl p-5">
+            <div class="text-3xl font-black text-white">IaC</div>
+            <div class="text-xs text-slate-500 mt-1">Terraform-driven focus</div>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <!-- Skills Section -->
-    <section id="skills" class="py-20 relative">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h3 class="text-3xl font-bold mb-12 flex items-center">
-                <i class="fas fa-microchip text-aws mr-4"></i> Technical Arsenal
-            </h3>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <!-- Cloud & Infrastructure -->
-                <div class="glass p-6 rounded-xl border border-white/5">
-                    <h4 class="text-lg font-semibold mb-4 text-aws"><i class="fab fa-aws mr-2"></i> Cloud & Compute</h4>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-white/5 rounded-md text-sm text-gray-300 border border-white/10">AWS</span>
-                        <span class="px-3 py-1 bg-white/5 rounded-md text-sm text-gray-300 border border-white/10">Azure</span>
-                        <span class="px-3 py-1 bg-white/5 rounded-md text-sm text-gray-300 border border-white/10">EC2</span>
-                        <span class="px-3 py-1 bg-white/5 rounded-md text-sm text-gray-300 border border-white/10">VPC</span>
-                        <span class="px-3 py-1 bg-white/5 rounded-md text-sm text-gray-300 border border-white/10">Lambda</span>
-                        <span class="px-3 py-1 bg-white/5 rounded-md text-sm text-gray-300 border border-white/10">ECS Fargate</span>
-                        <span class="px-3 py-1 bg-white/5 rounded-md text-sm text-gray-300 border border-white/10">CloudFormation</span>
-                    </div>
-                </div>
-
-                <!-- Containers & Orchestration -->
-                <div class="glass p-6 rounded-xl border border-white/5">
-                    <h4 class="text-lg font-semibold mb-4 text-k8s"><i class="fas fa-dharmachakra mr-2"></i> Orchestration</h4>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-white/5 rounded-md text-sm text-gray-300 border border-white/10">Kubernetes</span>
-                        <span class="px-3 py-1 bg-white/5 rounded-md text-sm text-gray-300 border border-white/10">Amazon EKS</span>
-                        <span class="px-3 py-1 bg-white/5 rounded-md text-sm text-gray-300 border border-white/10">Docker</span>
-                        <span class="px-3 py-1 bg-white/5 rounded-md text-sm text-gray-300 border border-white/10">Helm</span>
-                        <span class="px-3 py-1 bg-white/5 rounded-md text-sm text-gray-300 border border-white/10">RBAC / HPA</span>
-                    </div>
-                </div>
-
-                <!-- CI/CD & IaC -->
-                <div class="glass p-6 rounded-xl border border-white/5">
-                    <h4 class="text-lg font-semibold mb-4 text-tf"><i class="fas fa-code-branch mr-2"></i> CI/CD & IaC</h4>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-white/5 rounded-md text-sm text-gray-300 border border-white/10">Terraform</span>
-                        <span class="px-3 py-1 bg-white/5 rounded-md text-sm text-gray-300 border border-white/10">Jenkins</span>
-                        <span class="px-3 py-1 bg-white/5 rounded-md text-sm text-gray-300 border border-white/10">Argo CD</span>
-                        <span class="px-3 py-1 bg-white/5 rounded-md text-sm text-gray-300 border border-white/10">GitHub Actions</span>
-                        <span class="px-3 py-1 bg-white/5 rounded-md text-sm text-gray-300 border border-white/10">Ansible</span>
-                    </div>
-                </div>
-
-                <!-- DevSecOps & Monitoring -->
-                <div class="glass p-6 rounded-xl border border-white/5">
-                    <h4 class="text-lg font-semibold mb-4 text-red-400"><i class="fas fa-shield-alt mr-2"></i> DevSecOps & Obs.</h4>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-white/5 rounded-md text-sm text-gray-300 border border-white/10">SonarQube</span>
-                        <span class="px-3 py-1 bg-white/5 rounded-md text-sm text-gray-300 border border-white/10">Trivy</span>
-                        <span class="px-3 py-1 bg-white/5 rounded-md text-sm text-gray-300 border border-white/10">Prometheus</span>
-                        <span class="px-3 py-1 bg-white/5 rounded-md text-sm text-gray-300 border border-white/10">Grafana</span>
-                        <span class="px-3 py-1 bg-white/5 rounded-md text-sm text-gray-300 border border-white/10">CloudWatch</span>
-                        <span class="px-3 py-1 bg-white/5 rounded-md text-sm text-gray-300 border border-white/10">Python / Bash</span>
-                    </div>
-                </div>
-            </div>
+    <!-- ABOUT -->
+    <section id="about" class="py-24 relative">
+      <div class="max-w-7xl mx-auto px-5 sm:px-6">
+        <div class="mb-12 reveal">
+          <div class="text-cyan-300 text-xs tracking-[.3em] uppercase font-bold">01 / About</div>
+          <h2 class="text-4xl sm:text-5xl font-black text-white mt-3">Turning Code into <span class="gradient-text">Cloud Systems</span></h2>
         </div>
-    </section>
 
-    <!-- Projects Section -->
-    <section id="projects" class="py-20 relative">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h3 class="text-3xl font-bold mb-12 flex items-center">
-                <i class="fas fa-network-wired text-k8s mr-4"></i> Cloud Architecture Projects
-            </h3>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
-                
-                <!-- Project 1 -->
-                <div class="glass project-card rounded-2xl p-8 border border-white/10 flex flex-col justify-between">
-                    <div>
-                        <div class="flex justify-between items-start mb-4">
-                            <h4 class="text-xl font-bold text-white">RAG Application on AWS ECS Fargate with Automated FinOps</h4>
-                        </div>
-                        <p class="text-gray-400 text-sm mb-6 leading-relaxed">
-                            Containerized RAG document retrieval application deployed on serverless AWS ECS Fargate. Engineered an automated AWS cost monitoring and email reporting pipeline to track cluster and application expenditure.
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-8">
-                            <span class="text-xs font-mono text-aws bg-aws/10 px-2 py-1 rounded">AWS ECS Fargate</span>
-                            <span class="text-xs font-mono text-blue-400 bg-blue-400/10 px-2 py-1 rounded">Docker</span>
-                            <span class="text-xs font-mono text-aws bg-aws/10 px-2 py-1 rounded">Lambda</span>
-                            <span class="text-xs font-mono text-green-400 bg-green-400/10 px-2 py-1 rounded">Cost Explorer API</span>
-                            <span class="text-xs font-mono text-yellow-400 bg-yellow-400/10 px-2 py-1 rounded">Python</span>
-                        </div>
-                    </div>
-                    <a href="https://github.com/vaibhavingle2002/RAG-Application-AWS-ECS-Fargate-FinOps" target="_blank" class="inline-flex items-center text-sm font-semibold text-white bg-white/5 hover:bg-white/10 px-4 py-2 rounded-lg transition-colors w-fit border border-white/10">
-                        <i class="fab fa-github mr-2"></i> VIEW ON GITHUB &rarr;
-                    </a>
-                </div>
-
-                <!-- Project 2 -->
-                <div class="glass project-card rounded-2xl p-8 border border-white/10 flex flex-col justify-between">
-                    <div>
-                        <div class="flex justify-between items-start mb-4">
-                            <h4 class="text-xl font-bold text-white">Cloud-Native DevSecOps Pipeline with GitOps — Tetris</h4>
-                        </div>
-                        <p class="text-gray-400 text-sm mb-6 leading-relaxed">
-                            End-to-end CI/CD pipeline for deploying a containerized Tetris application to Amazon EKS. Features automated security scanning and a pull-based GitOps deployment strategy for declarative infrastructure.
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-8">
-                            <span class="text-xs font-mono text-k8s bg-k8s/10 px-2 py-1 rounded">AWS EKS</span>
-                            <span class="text-xs font-mono text-tf bg-tf/10 px-2 py-1 rounded">Terraform</span>
-                            <span class="text-xs font-mono text-red-400 bg-red-400/10 px-2 py-1 rounded">Argo CD</span>
-                            <span class="text-xs font-mono text-blue-300 bg-blue-300/10 px-2 py-1 rounded">Jenkins</span>
-                            <span class="text-xs font-mono text-purple-400 bg-purple-400/10 px-2 py-1 rounded">SonarQube & Trivy</span>
-                        </div>
-                    </div>
-                    <a href="https://github.com/vaibhavingle2002" target="_blank" class="inline-flex items-center text-sm font-semibold text-white bg-white/5 hover:bg-white/10 px-4 py-2 rounded-lg transition-colors w-fit border border-white/10">
-                        <i class="fab fa-github mr-2"></i> VIEW ON GITHUB &rarr;
-                    </a>
-                </div>
-
-                <!-- Project 3 -->
-                <div class="glass project-card rounded-2xl p-8 border border-white/10 flex flex-col justify-between">
-                    <div>
-                        <div class="flex justify-between items-start mb-4">
-                            <h4 class="text-xl font-bold text-white">Three-Tier AWS Infrastructure using Terraform</h4>
-                        </div>
-                        <p class="text-gray-400 text-sm mb-6 leading-relaxed">
-                            Scalable, highly available three-tier AWS infrastructure provisioned entirely via modular Terraform code. Includes custom VPC networking, NAT gateways, ALB load balancing, EC2 auto-scaling, and managed RDS.
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-8">
-                            <span class="text-xs font-mono text-tf bg-tf/10 px-2 py-1 rounded">Terraform</span>
-                            <span class="text-xs font-mono text-aws bg-aws/10 px-2 py-1 rounded">AWS VPC & EC2</span>
-                            <span class="text-xs font-mono text-aws bg-aws/10 px-2 py-1 rounded">ALB & RDS</span>
-                            <span class="text-xs font-mono text-gray-300 bg-gray-500/10 px-2 py-1 rounded">CloudWatch</span>
-                        </div>
-                    </div>
-                    <a href="https://github.com/vaibhavingle2002" target="_blank" class="inline-flex items-center text-sm font-semibold text-white bg-white/5 hover:bg-white/10 px-4 py-2 rounded-lg transition-colors w-fit border border-white/10">
-                        <i class="fab fa-github mr-2"></i> VIEW ON GITHUB &rarr;
-                    </a>
-                </div>
-
-                <!-- Project 4 -->
-                <div class="glass project-card rounded-2xl p-8 border border-white/10 flex flex-col justify-between">
-                    <div>
-                        <div class="flex justify-between items-start mb-4">
-                            <h4 class="text-xl font-bold text-white">Cloud-Native DevSecOps Pipeline — 2048</h4>
-                        </div>
-                        <p class="text-gray-400 text-sm mb-6 leading-relaxed">
-                            Containerized 2048 application deployed on Kubernetes through a Jenkins-based pipeline. Shift-left security enforced with automated code analysis, dependency checking, and container vulnerability scanning.
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-8">
-                            <span class="text-xs font-mono text-blue-300 bg-blue-300/10 px-2 py-1 rounded">Jenkins</span>
-                            <span class="text-xs font-mono text-k8s bg-k8s/10 px-2 py-1 rounded">Kubernetes</span>
-                            <span class="text-xs font-mono text-purple-400 bg-purple-400/10 px-2 py-1 rounded">Trivy</span>
-                            <span class="text-xs font-mono text-orange-400 bg-orange-400/10 px-2 py-1 rounded">Prometheus/Grafana</span>
-                        </div>
-                    </div>
-                    <a href="https://github.com/vaibhavingle2002" target="_blank" class="inline-flex items-center text-sm font-semibold text-white bg-white/5 hover:bg-white/10 px-4 py-2 rounded-lg transition-colors w-fit border border-white/10">
-                        <i class="fab fa-github mr-2"></i> VIEW ON GITHUB &rarr;
-                    </a>
-                </div>
-                
-                <!-- Project 5 -->
-                <div class="glass project-card rounded-2xl p-8 border border-white/10 flex flex-col justify-between md:col-span-2 lg:col-span-2">
-                    <div>
-                        <div class="flex justify-between items-start mb-4">
-                            <h4 class="text-xl font-bold text-white">ShopCI E-Commerce Platform</h4>
-                        </div>
-                        <p class="text-gray-400 text-sm mb-6 leading-relaxed max-w-3xl">
-                            Full-stack e-commerce application containerized using Docker and prepared for scalable Kubernetes deployment, backed by persistent MySQL storage architecture.
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-8">
-                            <span class="text-xs font-mono text-blue-400 bg-blue-400/10 px-2 py-1 rounded">Docker Compose</span>
-                            <span class="text-xs font-mono text-k8s bg-k8s/10 px-2 py-1 rounded">Kubernetes</span>
-                            <span class="text-xs font-mono text-cyan-400 bg-cyan-400/10 px-2 py-1 rounded">React</span>
-                            <span class="text-xs font-mono text-green-500 bg-green-500/10 px-2 py-1 rounded">Node.js</span>
-                            <span class="text-xs font-mono text-blue-300 bg-blue-300/10 px-2 py-1 rounded">MySQL</span>
-                        </div>
-                    </div>
-                    <a href="https://github.com/vaibhavingle2002/VaibhavsShopciProject" target="_blank" class="inline-flex items-center text-sm font-semibold text-white bg-white/5 hover:bg-white/10 px-4 py-2 rounded-lg transition-colors w-fit border border-white/10">
-                        <i class="fab fa-github mr-2"></i> VIEW ON GITHUB &rarr;
-                    </a>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- Experience & Education Section -->
-    <section id="experience" class="py-20 relative bg-black/40 border-t border-white/5">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-16">
-            
-            <!-- Experience -->
-            <div>
-                <h3 class="text-2xl font-bold mb-8 flex items-center">
-                    <i class="fas fa-briefcase text-tf mr-4"></i> Professional Experience
-                </h3>
-                <div class="relative pl-6 border-l border-white/20 space-y-10">
-                    
-                    <div class="relative">
-                        <div class="absolute -left-[33px] top-1 bg-darkBg border-2 border-tf w-4 h-4 rounded-full"></div>
-                        <h4 class="text-lg font-bold text-white">AWS Cloud Engineer Intern</h4>
-                        <div class="text-tf text-sm font-mono mb-3">InternCertify | March 2024 – September 2024</div>
-                        <p class="text-gray-400 text-sm leading-relaxed">
-                            Worked with AWS EC2, S3, RDS, and Lambda, practiced serverless application hosting and blue-green deployment concepts, and gained practical exposure to Auto Scaling Groups, Target Groups, AWS cloud infrastructure, and deployment workflows.
-                        </p>
-                    </div>
-
-                </div>
+        <div class="grid lg:grid-cols-[1.15fr_.85fr] gap-7">
+          <div class="glass rounded-3xl p-7 sm:p-9 reveal">
+            <div class="w-14 h-14 rounded-2xl bg-cyan-400/10 border border-cyan-400/20 flex items-center justify-center text-cyan-300 text-xl mb-6">
+              <i class="fa-solid fa-cloud-arrow-up"></i>
             </div>
 
-            <!-- Education & Certifications -->
-            <div>
-                <h3 class="text-2xl font-bold mb-8 flex items-center">
-                    <i class="fas fa-graduation-cap text-aws mr-4"></i> Education & Training
-                </h3>
-                <div class="relative pl-6 border-l border-white/20 space-y-8">
-                    
-                    <div class="relative">
-                        <div class="absolute -left-[33px] top-1 bg-darkBg border-2 border-aws w-4 h-4 rounded-full"></div>
-                        <h4 class="text-lg font-bold text-white">Master of Computer Applications (MCA)</h4>
-                        <div class="text-aws text-sm font-mono mb-1">Sant Gadge Baba Amravati University</div>
-                        <div class="text-gray-500 text-xs mb-2">2025 – 2027 | SGPA: 7.56</div>
-                    </div>
-
-                    <div class="relative">
-                        <div class="absolute -left-[33px] top-1 bg-darkBg border-2 border-aws w-4 h-4 rounded-full"></div>
-                        <h4 class="text-lg font-bold text-white">Bachelor of Computer Applications (BCA)</h4>
-                        <div class="text-aws text-sm font-mono mb-1">Sant Gadge Baba Amravati University</div>
-                        <div class="text-gray-500 text-xs mb-2">2022 – 2025 | CGPA: 7.86 (Top Performer)</div>
-                    </div>
-
-                    <div class="relative">
-                        <div class="absolute -left-[33px] top-1 bg-darkBg border-2 border-green-400 w-4 h-4 rounded-full"></div>
-                        <h4 class="text-lg font-bold text-white">DevOps With AWS Training</h4>
-                        <div class="text-green-400 text-sm font-mono mb-1">Naresh IT, Hyderabad</div>
-                    </div>
-
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- Footer / Contact -->
-    <footer id="contact" class="border-t border-white/10 pt-16 pb-8 relative overflow-hidden">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-            <h2 class="text-3xl font-bold mb-6">Let's Build Resilient Infrastructure Together</h2>
-            <p class="text-gray-400 mb-10 text-sm">
-                Open to AWS DevOps, Cloud Engineering, and SRE opportunities.
+            <p class="text-slate-300 text-lg leading-8">
+              I'm an <span class="text-white font-semibold">AWS DevOps Engineer</span> focused on cloud infrastructure, automation, Kubernetes, CI/CD, Infrastructure as Code, DevSecOps, and GitOps.
             </p>
-            
-            <div class="flex flex-wrap justify-center gap-6 mb-12">
-                <a href="mailto:devopsguyvaibhav888@gmail.com" class="flex items-center space-x-2 text-gray-300 hover:text-white transition-colors bg-white/5 px-4 py-2 rounded-lg border border-white/10">
-                    <i class="fas fa-envelope text-aws"></i>
-                    <span>devopsguyvaibhav888@gmail.com</span>
-                </a>
-                <a href="tel:+919529458514" class="flex items-center space-x-2 text-gray-300 hover:text-white transition-colors bg-white/5 px-4 py-2 rounded-lg border border-white/10">
-                    <i class="fas fa-phone text-k8s"></i>
-                    <span>+91 9529458514</span>
-                </a>
-                <a href="https://www.linkedin.com/in/vaibhav-ingle-82518a274/" target="_blank" class="flex items-center space-x-2 text-gray-300 hover:text-white transition-colors bg-white/5 px-4 py-2 rounded-lg border border-white/10">
-                    <i class="fab fa-linkedin text-blue-500"></i>
-                    <span>LinkedIn</span>
-                </a>
-                <a href="https://github.com/vaibhavingle2002" target="_blank" class="flex items-center space-x-2 text-gray-300 hover:text-white transition-colors bg-white/5 px-4 py-2 rounded-lg border border-white/10">
-                    <i class="fab fa-github text-white"></i>
-                    <span>GitHub</span>
-                </a>
+
+            <p class="text-slate-400 leading-8 mt-5">
+              I build hands-on projects around AWS, Docker, Kubernetes/EKS, Terraform, Jenkins, Argo CD, Prometheus, Grafana, and security scanning tools, with emphasis on automation, reliability, observability, and repeatable deployments.
+            </p>
+
+            <p class="text-slate-400 leading-8 mt-5">
+              I've also worked with AWS FinOps automation, including Cost Explorer, Lambda, EventBridge, and SES-based cost reporting, along with practical experience deploying a containerized RAG application on ECS Fargate.
+            </p>
+
+            <p class="text-slate-400 leading-8 mt-5">
+              I have working knowledge of Microsoft Azure and am interested in cloud-native, multi-cloud, platform engineering, and automation technologies.
+            </p>
+          </div>
+
+          <div class="grid sm:grid-cols-2 lg:grid-cols-1 gap-4 reveal">
+            <div class="glass rounded-3xl p-6">
+              <div class="flex items-center gap-4">
+                <div class="w-11 h-11 rounded-xl bg-purple-500/10 border border-purple-400/20 flex items-center justify-center text-purple-300">
+                  <i class="fa-solid fa-cubes"></i>
+                </div>
+                <div>
+                  <div class="font-bold text-white">IaC & Terraform</div>
+                  <div class="text-xs text-slate-500 mt-1">Repeatable infrastructure</div>
+                </div>
+              </div>
             </div>
 
-            <p class="text-gray-600 text-xs">
-                &copy; 2026 Vaibhav Sudhakar Ingle. Built with code, containers, and cloud.
-            </p>
+            <div class="glass rounded-3xl p-6">
+              <div class="flex items-center gap-4">
+                <div class="w-11 h-11 rounded-xl bg-blue-500/10 border border-blue-400/20 flex items-center justify-center text-blue-300">
+                  <i class="fa-solid fa-dharmachakra"></i>
+                </div>
+                <div>
+                  <div class="font-bold text-white">Kubernetes Orchestration</div>
+                  <div class="text-xs text-slate-500 mt-1">Containers & EKS</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="glass rounded-3xl p-6">
+              <div class="flex items-center gap-4">
+                <div class="w-11 h-11 rounded-xl bg-orange-500/10 border border-orange-400/20 flex items-center justify-center text-orange-300">
+                  <i class="fa-solid fa-shield-halved"></i>
+                </div>
+                <div>
+                  <div class="font-bold text-white">DevSecOps</div>
+                  <div class="text-xs text-slate-500 mt-1">Security in CI/CD</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="glass rounded-3xl p-6">
+              <div class="flex items-center gap-4">
+                <div class="w-11 h-11 rounded-xl bg-green-500/10 border border-green-400/20 flex items-center justify-center text-green-300">
+                  <i class="fa-solid fa-coins"></i>
+                </div>
+                <div>
+                  <div class="font-bold text-white">FinOps Governance</div>
+                  <div class="text-xs text-slate-500 mt-1">Cost visibility & automation</div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-    </footer>
+      </div>
+    </section>
 
-    <!-- Scripts -->
-    <script>
-        // Smooth scroll for nav links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
+    <!-- SKILLS -->
+    <section id="skills" class="py-24 relative">
+      <div class="max-w-7xl mx-auto px-5 sm:px-6">
+        <div class="mb-12 reveal">
+          <div class="text-cyan-300 text-xs tracking-[.3em] uppercase font-bold">02 / Technology</div>
+          <h2 class="text-4xl sm:text-5xl font-black text-white mt-3">Tech Stack & <span class="gradient-text">Tools</span></h2>
+          <p class="text-slate-500 mt-4 max-w-2xl">Technologies I use across cloud infrastructure, automation, containers, security, observability, and deployment workflows.</p>
+        </div>
 
-        // Navbar blur on scroll
-        window.addEventListener('scroll', () => {
-            const nav = document.getElementById('navbar');
-            if (window.scrollY > 50) {
-                nav.classList.add('shadow-lg', 'bg-darkBg/90');
-                nav.classList.remove('border-transparent');
-            } else {
-                nav.classList.remove('shadow-lg', 'bg-darkBg/90');
-                nav.classList.add('border-transparent');
+        <div class="grid md:grid-cols-2 xl:grid-cols-3 gap-5">
+
+          <div class="glass rounded-3xl p-6 skill-item reveal">
+            <div class="flex items-center gap-3 mb-5">
+              <div class="w-11 h-11 rounded-xl bg-orange-500/10 border border-orange-400/20 flex items-center justify-center text-orange-300">
+                <i class="fa-brands fa-aws text-xl"></i>
+              </div>
+              <h3 class="font-bold text-white">Cloud & Compute</h3>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <span class="tech-pill glass rounded-lg px-3 py-2 text-xs">AWS</span>
+              <span class="tech-pill glass rounded-lg px-3 py-2 text-xs">Azure</span>
+              <span class="tech-pill glass rounded-lg px-3 py-2 text-xs">EC2</span>
+              <span class="tech-pill glass rounded-lg px-3 py-2 text-xs">ECS Fargate</span>
+              <span class="tech-pill glass rounded-lg px-3 py-2 text-xs">Lambda</span>
+              <span class="tech-pill glass rounded-lg px-3 py-2 text-xs">S3</span>
+              <span class="tech-pill glass rounded-lg px-3 py-2 text-xs">RDS</span>
+              <span class="tech-pill glass rounded-lg px-3 py-2 text-xs">VPC</span>
+            </div>
+          </div>
+
+          <div class="glass rounded-3xl p-6 skill-item reveal">
+            <div class="flex items-center gap-3 mb-5">
+              <div class="w-11 h-11 rounded-xl bg-blue-500/10 border border-blue-400/20 flex items-center justify-center text-blue-300">
+                <i class="devicon-kubernetes-plain text-xl"></i>
+              </div>
+              <h3 class="font-bold text-white">Containers & Orchestration</h3>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <span class="tech-pill glass rounded-lg px-3 py-2 text-xs">Docker</span>
+              <span class="tech-pill glass rounded-lg px-3 py-2 text-xs">Docker Compose</span>
+              <span class="tech-pill glass rounded-lg px-3 py-2 text-xs">Kubernetes</span>
+              <span class="tech-pill glass rounded-lg px-3 py-2 text-xs">Amazon EKS</span>
+              <span class="tech-pill glass rounded-lg px-3 py-2 text-xs">Helm</span>
+              <span class="tech-pill glass rounded-lg px-3 py-2 text-xs">RBAC</span>
+              <span class="tech-pill glass rounded-lg px-3 py-2 text-xs">HPA</span>
+              <span class="tech-pill glass rounded-lg px-3 py-2 text-xs">PV/PVC</span>
+            </div>
+          </div>
+
+          <div class="glass rounded-3xl p-6 skill-item reveal">
+            <div class="flex items-center gap-3 mb-5">
+              <div class="w-11 h-11 rounded-xl bg-purple-500/10 border border-purple-400/20 flex items-center justify-center text-purple-300">
+                <i class="fa-solid fa-arrows-rotate text-xl"></i>
+              </div>
+              <h3 class="font-bold text-white">CI/CD & GitOps</h3>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <span class="tech-pill glass rounded-lg px-3 py-2 text-xs">Jenkins</span>
+              <span class="tech-pill glass rounded-lg px-3 py-2 text-xs">GitHub Actions</span>
+              <span class="tech-pill glass rounded-lg px-3 py-2 text-xs">CodePipeline</span>
+              <span class="tech-pill glass rounded-lg px-3 py-2 text-xs">CodeBuild</span>
+              <span class="tech-pill glass rounded-lg px-3 py-2 text-xs">CodeDeploy</span>
+              <span class="tech-pill glass rounded-lg px-3 py-2 text-xs">Argo CD</span>
+              <span class="tech-pill glass rounded-lg px-3 py-2 text-xs">Maven</span>
+            </div>
+          </div>
+
+          <div class="glass rounded-3xl p-6 skill-item reveal">
+            <div class="flex items-center gap-3 mb-5">
+              <div class="w-11 h-11 rounded-xl bg-cyan-500/10 border border-cyan-400/20 flex items-center justify-center text-cyan-300">
+                <i class="fa-solid fa-code-branch text-xl"></i>
+              </div>
+              <h3 class="font-bold text-white">IaC & Configuration</h3>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <span class="tech-pill glass rounded-lg px-3 py-2 text-xs">Terraform</span>
+              <span class="tech-pill glass rounded-lg px-3 py-2 text-xs">Ansible</span>
+              <span class="tech-pill glass rounded-lg px-3 py-2 text-xs">YAML</span>
+              <span class="tech-pill glass rounded-lg px-3 py-2 text-xs">Git</span>
+            </div>
+          </div>
+
+          <div class="glass rounded-3xl p-6 skill-item reveal">
+            <div class="flex items-center gap-3 mb-5">
+              <div class="w-11 h-11 rounded-xl bg-red-500/10 border border-red-400/20 flex items-center justify-center text-red-300">
+                <i class="fa-solid fa-shield-virus text-xl"></i>
+              </div>
+              <h3 class="font-bold text-white">DevSecOps</h3>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <span class="tech-pill glass rounded-lg px-3 py-2 text-xs">SonarQube</span>
+              <span class="tech-pill glass rounded-lg px-3 py-2 text-xs">Trivy</span>
+              <span class="tech-pill glass rounded-lg px-3 py-2 text-xs">OWASP Dependency-Check</span>
+            </div>
+          </div>
+
+          <div class="glass rounded-3xl p-6 skill-item reveal">
+            <div class="flex items-center gap-3 mb-5">
+              <div class="w-11 h-11 rounded-xl bg-green-500/10 border border-green-400/20 flex items-center justify-center text-green-300">
+                <i class="fa-solid fa-chart-line text-xl"></i>
+              </div>
+              <h3 class="font-bold text-white">Monitoring & Observability</h3>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <span class="tech-pill glass rounded-lg px-3 py-2 text-xs">Prometheus</span>
+              <span class="tech-pill glass rounded-lg px-3 py-2 text-xs">Grafana</span>
+              <span class="tech-pill glass rounded-lg px-3 py-2 text-xs">CloudWatch</span>
+              <span class="tech-pill glass rounded-lg px-3 py-2 text-xs">ELK</span>
+            </div>
+          </div>
+
+          <div class="glass rounded-3xl p-6 skill-item reveal">
+            <div class="flex items-center gap-3 mb-5">
+              <div class="w-11 h-11 rounded-xl bg-yellow-500/10 border border-yellow-400/20 flex items-center justify-center text-yellow-300">
+                <i class="fa-solid fa-terminal text-xl"></i>
+              </div>
+              <h3 class="font-bold text-white">Scripting & Systems</h3>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <span class="tech-pill glass rounded-lg px-3 py-2 text-xs">Python</span>
+              <span class="tech-pill glass rounded-lg px-3 py-2 text-xs">Boto3</span>
+              <span class="tech-pill glass rounded-lg px-3 py-2 text-xs">Bash</span>
+              <span class="tech-pill glass rounded-lg px-3 py-2 text-xs">Linux</span>
+              <span class="tech-pill glass rounded-lg px-3 py-2 text-xs">YAML</span>
+            </div>
+          </div>
+
+          <div class="glass rounded-3xl p-6 skill-item reveal">
+            <div class="flex items-center gap-3 mb-5">
+              <div class="w-11 h-11 rounded-xl bg-orange-500/10 border border-orange-400/20 flex items-center justify-center text-orange-300">
+                <i class="fa-solid fa-coins text-xl"></i>
+              </div>
+              <h3 class="font-bold text-white">FinOps</h3>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <span class="tech-pill glass rounded-lg px-3 py-2 text-xs">Cost Explorer</span>
+              <span class="tech-pill glass rounded-lg px-3 py-2 text-xs">Lambda</span>
+              <span class="tech-pill glass rounded-lg px-3 py-2 text-xs">EventBridge</span>
+              <span class="tech-pill glass rounded-lg px-3 py-2 text-xs">SES</span>
+              <span class="tech-pill glass rounded-lg px-3 py-2 text-xs">Boto3</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" class="py-24 relative">
+      <div class="max-w-7xl mx-auto px-5 sm:px-6">
+        <div class="mb-12 reveal">
+          <div class="text-cyan-300 text-xs tracking-[.3em] uppercase font-bold">03 / Selected Work</div>
+          <h2 class="text-4xl sm:text-5xl font-black text-white mt-3">Featured <span class="gradient-text">Projects</span></h2>
+          <p class="text-slate-500 mt-4 max-w-2xl">Hands-on cloud and DevOps projects focused on automation, infrastructure, security, containers, Kubernetes, and operational visibility.</p>
+        </div>
+
+        <div class="grid lg:grid-cols-2 gap-6">
+
+          <!-- PROJECT 1 -->
+          <article class="project-card glass rounded-3xl p-6 sm:p-7 reveal" data-tilt>
+            <div class="flex items-start justify-between gap-4">
+              <div class="project-icon w-14 h-14 rounded-2xl bg-orange-500/10 border border-orange-400/20 flex items-center justify-center text-orange-300 text-xl">
+                <i class="fa-brands fa-aws"></i>
+              </div>
+              <span class="text-xs text-slate-600 font-mono">01 / AWS</span>
+            </div>
+
+            <div class="mt-6">
+              <div class="text-xs text-orange-300 uppercase tracking-widest font-bold">Infrastructure as Code</div>
+              <h3 class="text-2xl font-black text-white mt-2">Three-Tier AWS Infrastructure using Terraform</h3>
+              <p class="text-cyan-300 text-sm mt-2">Scalable cloud infrastructure through Infrastructure as Code</p>
+              <p class="text-slate-400 text-sm leading-7 mt-5">
+                Scalable three-tier AWS infrastructure provisioned using Terraform, including networking, load balancing, application servers, and managed database services.
+              </p>
+            </div>
+
+            <div class="flex flex-wrap gap-2 mt-6">
+              <span class="tech-pill px-2.5 py-1.5 rounded-lg border border-slate-700 text-[11px] text-slate-300">Terraform</span>
+              <span class="tech-pill px-2.5 py-1.5 rounded-lg border border-slate-700 text-[11px] text-slate-300">VPC</span>
+              <span class="tech-pill px-2.5 py-1.5 rounded-lg border border-slate-700 text-[11px] text-slate-300">EC2</span>
+              <span class="tech-pill px-2.5 py-1.5 rounded-lg border border-slate-700 text-[11px] text-slate-300">ALB</span>
+              <span class="tech-pill px-2.5 py-1.5 rounded-lg border border-slate-700 text-[11px] text-slate-300">RDS</span>
+              <span class="tech-pill px-2.5 py-1.5 rounded-lg border border-slate-700 text-[11px] text-slate-300">CloudWatch</span>
+            </div>
+
+            <div class="mt-7 pt-5 border-t border-slate-800">
+              <a href="#" class="github-placeholder inline-flex items-center gap-2 text-sm font-bold text-cyan-300 hover:text-white transition">
+                <i class="fa-brands fa-github"></i> View on GitHub <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+              </a>
+            </div>
+          </article>
+
+          <!-- PROJECT 2 -->
+          <article class="project-card glass rounded-3xl p-6 sm:p-7 reveal" data-tilt>
+            <div class="flex items-start justify-between gap-4">
+              <div class="project-icon w-14 h-14 rounded-2xl bg-cyan-500/10 border border-cyan-400/20 flex items-center justify-center text-cyan-300 text-xl">
+                <i class="fa-solid fa-brain"></i>
+              </div>
+              <span class="text-xs text-slate-600 font-mono">02 / FINOPS</span>
+            </div>
+
+            <div class="mt-6">
+              <div class="text-xs text-cyan-300 uppercase tracking-widest font-bold">AI Retrieval + Cloud Governance</div>
+              <h3 class="text-2xl font-black text-white mt-2">RAG Application on AWS ECS Fargate with Automated FinOps</h3>
+              <p class="text-cyan-300 text-sm mt-2">Serverless containers & automated cloud cost reporting</p>
+              <p class="text-slate-400 text-sm leading-7 mt-5">
+                Containerized document retrieval application deployed on AWS ECS Fargate with Pinecone vector search and an automated FinOps workflow using EventBridge, Lambda, Cost Explorer, and SES.
+              </p>
+            </div>
+
+            <div class="flex flex-wrap gap-2 mt-6">
+              <span class="tech-pill px-2.5 py-1.5 rounded-lg border border-slate-700 text-[11px] text-slate-300">ECS Fargate</span>
+              <span class="tech-pill px-2.5 py-1.5 rounded-lg border border-slate-700 text-[11px] text-slate-300">Docker</span>
+              <span class="tech-pill px-2.5 py-1.5 rounded-lg border border-slate-700 text-[11px] text-slate-300">Lambda</span>
+              <span class="tech-pill px-2.5 py-1.5 rounded-lg border border-slate-700 text-[11px] text-slate-300">EventBridge</span>
+              <span class="tech-pill px-2.5 py-1.5 rounded-lg border border-slate-700 text-[11px] text-slate-300">Cost Explorer</span>
+              <span class="tech-pill px-2.5 py-1.5 rounded-lg border border-slate-700 text-[11px] text-slate-300">SES</span>
+              <span class="tech-pill px-2.5 py-1.5 rounded-lg border border-slate-700 text-[11px] text-slate-300">Pinecone</span>
+            </div>
+
+            <div class="mt-7 pt-5 border-t border-slate-800">
+              <a href="https://github.com/vaibhavingle2002/RAG-Application-AWS-ECS-Fargate-FinOps" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-sm font-bold text-cyan-300 hover:text-white transition">
+                <i class="fa-brands fa-github"></i> View on GitHub <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+              </a>
+            </div>
+          </article>
+
+          <!-- PROJECT 3 -->
+          <article class="project-card glass rounded-3xl p-6 sm:p-7 reveal" data-tilt>
+            <div class="flex items-start justify-between gap-4">
+              <div class="project-icon w-14 h-14 rounded-2xl bg-purple-500/10 border border-purple-400/20 flex items-center justify-center text-purple-300 text-xl">
+                <i class="fa-solid fa-shield-halved"></i>
+              </div>
+              <span class="text-xs text-slate-600 font-mono">03 / DEVSECOPS</span>
+            </div>
+
+            <div class="mt-6">
+              <div class="text-xs text-purple-300 uppercase tracking-widest font-bold">Security + Kubernetes</div>
+              <h3 class="text-2xl font-black text-white mt-2">Cloud-Native DevSecOps Pipeline — 2048</h3>
+              <p class="text-cyan-300 text-sm mt-2">Shift-left security & automated Kubernetes deployment</p>
+              <p class="text-slate-400 text-sm leading-7 mt-5">
+                Containerized 2048 application deployed on Kubernetes through a Jenkins-based DevSecOps pipeline with automated code, dependency, and container security scanning.
+              </p>
+            </div>
+
+            <div class="flex flex-wrap gap-2 mt-6">
+              <span class="tech-pill px-2.5 py-1.5 rounded-lg border border-slate-700 text-[11px] text-slate-300">Jenkins</span>
+              <span class="tech-pill px-2.5 py-1.5 rounded-lg border border-slate-700 text-[11px] text-slate-300">Docker</span>
+              <span class="tech-pill px-2.5 py-1.5 rounded-lg border border-slate-700 text-[11px] text-slate-300">Kubernetes</span>
+              <span class="tech-pill px-2.5 py-1.5 rounded-lg border border-slate-700 text-[11px] text-slate-300">SonarQube</span>
+              <span class="tech-pill px-2.5 py-1.5 rounded-lg border border-slate-700 text-[11px] text-slate-300">Trivy</span>
+              <span class="tech-pill px-2.5 py-1.5 rounded-lg border border-slate-700 text-[11px] text-slate-300">Prometheus</span>
+              <span class="tech-pill px-2.5 py-1.5 rounded-lg border border-slate-700 text-[11px] text-slate-300">Grafana</span>
+            </div>
+
+            <div class="mt-7 pt-5 border-t border-slate-800">
+              <a href="#" class="github-placeholder inline-flex items-center gap-2 text-sm font-bold text-cyan-300 hover:text-white transition">
+                <i class="fa-brands fa-github"></i> View on GitHub <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+              </a>
+            </div>
+          </article>
+
+          <!-- PROJECT 4 -->
+          <article class="project-card glass rounded-3xl p-6 sm:p-7 reveal" data-tilt>
+            <div class="flex items-start justify-between gap-4">
+              <div class="project-icon w-14 h-14 rounded-2xl bg-blue-500/10 border border-blue-400/20 flex items-center justify-center text-blue-300 text-xl">
+                <i class="devicon-kubernetes-plain"></i>
+              </div>
+              <span class="text-xs text-slate-600 font-mono">04 / GITOPS</span>
+            </div>
+
+            <div class="mt-6">
+              <div class="text-xs text-blue-300 uppercase tracking-widest font-bold">GitOps + DevSecOps</div>
+              <h3 class="text-2xl font-black text-white mt-2">GitOps DevSecOps Pipeline on EKS — Tetris</h3>
+              <p class="text-cyan-300 text-sm mt-2">Declarative continuous delivery with Argo CD</p>
+              <p class="text-slate-400 text-sm leading-7 mt-5">
+                Kubernetes delivery workflow combining Terraform-provisioned EKS, Jenkins CI, security scanning, Docker, and Argo CD for declarative GitOps-based application delivery.
+              </p>
+            </div>
+
+            <div class="flex flex-wrap gap-2 mt-6">
+              <span class="tech-pill px-2.5 py-1.5 rounded-lg border border-slate-700 text-[11px] text-slate-300">Argo CD</span>
+              <span class="tech-pill px-2.5 py-1.5 rounded-lg border border-slate-700 text-[11px] text-slate-300">Terraform</span>
+              <span class="tech-pill px-2.5 py-1.5 rounded-lg border border-slate-700 text-[11px] text-slate-300">EKS</span>
+              <span class="tech-pill px-2.5 py-1.5 rounded-lg border border-slate-700 text-[11px] text-slate-300">Jenkins</span>
+              <span class="tech-pill px-2.5 py-1.5 rounded-lg border border-slate-700 text-[11px] text-slate-300">OWASP</span>
+              <span class="tech-pill px-2.5 py-1.5 rounded-lg border border-slate-700 text-[11px] text-slate-300">Trivy</span>
+            </div>
+
+            <div class="mt-7 pt-5 border-t border-slate-800">
+              <a href="#" class="github-placeholder inline-flex items-center gap-2 text-sm font-bold text-cyan-300 hover:text-white transition">
+                <i class="fa-brands fa-github"></i> View on GitHub <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+              </a>
+            </div>
+          </article>
+
+          <!-- PROJECT 5 -->
+          <article class="project-card glass rounded-3xl p-6 sm:p-7 reveal lg:col-span-2" data-tilt>
+            <div class="grid md:grid-cols-[auto_1fr_auto] gap-6 items-start">
+              <div class="project-icon w-14 h-14 rounded-2xl bg-green-500/10 border border-green-400/20 flex items-center justify-center text-green-300 text-xl">
+                <i class="fa-solid fa-cart-shopping"></i>
+              </div>
+
+              <div>
+                <div class="flex items-center justify-between gap-4">
+                  <div>
+                    <div class="text-xs text-green-300 uppercase tracking-widest font-bold">Full-Stack + Containers</div>
+                    <h3 class="text-2xl font-black text-white mt-2">ShopCI E-Commerce Platform</h3>
+                  </div>
+                  <span class="hidden sm:block text-xs text-slate-600 font-mono">05 / CLOUD NATIVE</span>
+                </div>
+
+                <p class="text-cyan-300 text-sm mt-2">Containerized full-stack application prepared for Kubernetes</p>
+                <p class="text-slate-400 text-sm leading-7 mt-4">
+                  Full-stack e-commerce application containerized using Docker and prepared for Kubernetes deployment with persistent MySQL storage.
+                </p>
+
+                <div class="flex flex-wrap gap-2 mt-5">
+                  <span class="tech-pill px-2.5 py-1.5 rounded-lg border border-slate-700 text-[11px] text-slate-300">React</span>
+                  <span class="tech-pill px-2.5 py-1.5 rounded-lg border border-slate-700 text-[11px] text-slate-300">Node.js</span>
+                  <span class="tech-pill px-2.5 py-1.5 rounded-lg border border-slate-700 text-[11px] text-slate-300">MySQL</span>
+                  <span class="tech-pill px-2.5 py-1.5 rounded-lg border border-slate-700 text-[11px] text-slate-300">Docker</span>
+                  <span class="tech-pill px-2.5 py-1.5 rounded-lg border border-slate-700 text-[11px] text-slate-300">Docker Compose</span>
+                  <span class="tech-pill px-2.5 py-1.5 rounded-lg border border-slate-700 text-[11px] text-slate-300">Kubernetes</span>
+                  <span class="tech-pill px-2.5 py-1.5 rounded-lg border border-slate-700 text-[11px] text-slate-300">AWS</span>
+                </div>
+              </div>
+
+              <div class="md:pt-2">
+                <a href="https://github.com/vaibhavingle2002/VaibhavsShopciProject" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-sm font-bold text-cyan-300 hover:text-white transition whitespace-nowrap">
+                  <i class="fa-brands fa-github"></i> View on GitHub
+                </a>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience" class="py-24 relative">
+      <div class="max-w-7xl mx-auto px-5 sm:px-6">
+        <div class="mb-12 reveal">
+          <div class="text-cyan-300 text-xs tracking-[.3em] uppercase font-bold">04 / Journey</div>
+          <h2 class="text-4xl sm:text-5xl font-black text-white mt-3">Experience & <span class="gradient-text">Education</span></h2>
+        </div>
+
+        <div class="relative max-w-4xl">
+          <div class="absolute left-[17px] top-2 bottom-2 w-px timeline-line"></div>
+
+          <div class="relative pl-12 pb-12 reveal">
+            <div class="absolute left-0 top-1 w-9 h-9 rounded-full bg-slate-950 border border-cyan-400/50 flex items-center justify-center text-cyan-300">
+              <i class="fa-solid fa-briefcase text-xs"></i>
+            </div>
+
+            <div class="glass rounded-3xl p-6 sm:p-7">
+              <div class="flex flex-wrap items-center justify-between gap-3">
+                <div>
+                  <div class="text-xs text-cyan-300 uppercase tracking-widest font-bold">Experience</div>
+                  <h3 class="text-xl font-black text-white mt-2">AWS Cloud Engineer Intern</h3>
+                  <div class="text-slate-400 mt-1">InternCertify</div>
+                </div>
+                <span class="px-3 py-2 rounded-lg bg-cyan-400/5 border border-cyan-400/15 text-xs text-cyan-200">Mar 2024 – Sep 2024</span>
+              </div>
+
+              <ul class="mt-6 space-y-3 text-sm text-slate-400">
+                <li class="flex gap-3"><span class="text-cyan-400">▹</span> Worked with AWS EC2, S3, RDS, and Lambda.</li>
+                <li class="flex gap-3"><span class="text-cyan-400">▹</span> Practiced serverless application hosting and blue-green deployment concepts.</li>
+                <li class="flex gap-3"><span class="text-cyan-400">▹</span> Gained practical exposure to Auto Scaling Groups and Target Groups.</li>
+                <li class="flex gap-3"><span class="text-cyan-400">▹</span> Built practical understanding of AWS cloud infrastructure and deployment workflows.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="relative pl-12 pb-12 reveal">
+            <div class="absolute left-0 top-1 w-9 h-9 rounded-full bg-slate-950 border border-purple-400/50 flex items-center justify-center text-purple-300">
+              <i class="fa-solid fa-graduation-cap text-xs"></i>
+            </div>
+
+            <div class="glass rounded-3xl p-6 sm:p-7">
+              <div class="text-xs text-purple-300 uppercase tracking-widest font-bold">Education</div>
+              <h3 class="text-xl font-black text-white mt-2">Master of Computer Applications</h3>
+              <div class="text-slate-400 mt-1">Sant Gadge Baba Amravati University</div>
+              <div class="mt-4 inline-flex px-3 py-2 rounded-lg bg-purple-500/5 border border-purple-400/15 text-xs text-purple-200">
+                2025 – 2027 · SGPA 7.56
+              </div>
+            </div>
+          </div>
+
+          <div class="relative pl-12 pb-12 reveal">
+            <div class="absolute left-0 top-1 w-9 h-9 rounded-full bg-slate-950 border border-orange-400/50 flex items-center justify-center text-orange-300">
+              <i class="fa-solid fa-graduation-cap text-xs"></i>
+            </div>
+
+            <div class="glass rounded-3xl p-6 sm:p-7">
+              <div class="text-xs text-orange-300 uppercase tracking-widest font-bold">Education</div>
+              <h3 class="text-xl font-black text-white mt-2">Bachelor of Computer Applications</h3>
+              <div class="text-slate-400 mt-1">Sant Gadge Baba Amravati University</div>
+              <div class="mt-4 flex flex-wrap gap-2">
+                <span class="px-3 py-2 rounded-lg bg-orange-500/5 border border-orange-400/15 text-xs text-orange-200">2022 – 2025</span>
+                <span class="px-3 py-2 rounded-lg bg-orange-500/5 border border-orange-400/15 text-xs text-orange-200">CGPA 7.86</span>
+                <span class="px-3 py-2 rounded-lg bg-orange-500/5 border border-orange-400/15 text-xs text-orange-200">Top Performer</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="relative pl-12 reveal">
+            <div class="absolute left-0 top-1 w-9 h-9 rounded-full bg-slate-950 border border-green-400/50 flex items-center justify-center text-green-300">
+              <i class="fa-solid fa-certificate text-xs"></i>
+            </div>
+
+            <div class="glass rounded-3xl p-6 sm:p-7">
+              <div class="text-xs text-green-300 uppercase tracking-widest font-bold">Professional Training</div>
+              <h3 class="text-xl font-black text-white mt-2">DevOps With AWS Training</h3>
+              <div class="text-slate-400 mt-1">Naresh IT · Hyderabad</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="py-24 relative">
+      <div class="max-w-7xl mx-auto px-5 sm:px-6">
+        <div class="glass rounded-[2rem] p-8 sm:p-12 lg:p-16 relative overflow-hidden reveal">
+          <div class="absolute -right-24 -top-24 w-80 h-80 rounded-full bg-cyan-400/10 blur-3xl"></div>
+          <div class="absolute -left-24 -bottom-24 w-80 h-80 rounded-full bg-purple-500/10 blur-3xl"></div>
+
+          <div class="relative grid lg:grid-cols-[1fr_auto] gap-10 items-center">
+            <div>
+              <div class="text-cyan-300 text-xs tracking-[.3em] uppercase font-bold">05 / Contact</div>
+              <h2 class="text-4xl sm:text-5xl lg:text-6xl font-black text-white mt-4">
+                Let's Build <span class="gradient-text">Resilient</span><br>
+                Infrastructure Together.
+              </h2>
+              <p class="text-slate-400 mt-6 max-w-2xl leading-7">
+                Open to AWS DevOps, Cloud, Platform Engineering, and related opportunities. Let's connect and build reliable cloud systems.
+              </p>
+
+              <div class="mt-8 flex flex-wrap gap-3">
+                <a href="mailto:devopsguyvaibhav888@gmail.com" class="px-5 py-3 rounded-xl bg-gradient-to-r from-cyan-500 to-purple-500 text-white font-bold text-sm hover:shadow-neon transition">
+                  <i class="fa-solid fa-envelope mr-2"></i>Email Me
+                </a>
+                <a href="https://github.com/vaibhavingle2002" target="_blank" rel="noopener noreferrer" class="px-5 py-3 rounded-xl border border-slate-700 text-slate-200 font-bold text-sm hover:border-cyan-400/50 transition">
+                  <i class="fa-brands fa-github mr-2"></i>GitHub
+                </a>
+                <a href="https://www.linkedin.com/in/vaibhav-ingle-82518a274/" target="_blank" rel="noopener noreferrer" class="px-5 py-3 rounded-xl border border-slate-700 text-slate-200 font-bold text-sm hover:border-cyan-400/50 transition">
+                  <i class="fa-brands fa-linkedin mr-2"></i>LinkedIn
+                </a>
+              </div>
+            </div>
+
+            <div class="glass rounded-3xl p-6 min-w-0 lg:min-w-[330px]">
+              <div class="text-xs text-slate-500 uppercase tracking-widest mb-5">Direct Contact</div>
+
+              <a href="mailto:devopsguyvaibhav888@gmail.com" class="flex items-center gap-4 py-3 group">
+                <div class="w-10 h-10 rounded-xl bg-cyan-400/10 flex items-center justify-center text-cyan-300">
+                  <i class="fa-solid fa-envelope"></i>
+                </div>
+                <div class="min-w-0">
+                  <div class="text-xs text-slate-500">Email</div>
+                  <div class="text-sm text-slate-200 truncate group-hover:text-cyan-300 transition">devopsguyvaibhav888@gmail.com</div>
+                </div>
+              </a>
+
+              <a href="tel:+919529458514" class="flex items-center gap-4 py-3 group">
+                <div class="w-10 h-10 rounded-xl bg-purple-400/10 flex items-center justify-center text-purple-300">
+                  <i class="fa-solid fa-phone"></i>
+                </div>
+                <div>
+                  <div class="text-xs text-slate-500">Phone</div>
+                  <div class="text-sm text-slate-200 group-hover:text-purple-300 transition">+91 9529458514</div>
+                </div>
+              </a>
+
+              <a href="https://www.linkedin.com/in/vaibhav-ingle-82518a274/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-4 py-3 group">
+                <div class="w-10 h-10 rounded-xl bg-blue-400/10 flex items-center justify-center text-blue-300">
+                  <i class="fa-brands fa-linkedin"></i>
+                </div>
+                <div class="min-w-0">
+                  <div class="text-xs text-slate-500">LinkedIn</div>
+                  <div class="text-sm text-slate-200 truncate group-hover:text-blue-300 transition">vaibhav-ingle-82518a274</div>
+                </div>
+              </a>
+
+              <a href="https://github.com/vaibhavingle2002" target="_blank" rel="noopener noreferrer" class="flex items-center gap-4 py-3 group">
+                <div class="w-10 h-10 rounded-xl bg-slate-700/30 flex items-center justify-center text-slate-200">
+                  <i class="fa-brands fa-github"></i>
+                </div>
+                <div>
+                  <div class="text-xs text-slate-500">GitHub</div>
+                  <div class="text-sm text-slate-200 group-hover:text-white transition">vaibhavingle2002</div>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-slate-800/80 py-8">
+    <div class="max-w-7xl mx-auto px-5 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div>
+        <div class="font-bold text-white">VAIBHAV SUDHAKAR INGLE</div>
+        <div class="text-xs text-slate-500 mt-1">AWS DevOps Engineer</div>
+      </div>
+
+      <div class="flex items-center gap-4 text-slate-500">
+        <a href="https://github.com/vaibhavingle2002" target="_blank" rel="noopener noreferrer" class="hover:text-white transition" aria-label="GitHub">
+          <i class="fa-brands fa-github"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/vaibhav-ingle-82518a274/" target="_blank" rel="noopener noreferrer" class="hover:text-cyan-300 transition" aria-label="LinkedIn">
+          <i class="fa-brands fa-linkedin"></i>
+        </a>
+        <a href="mailto:devopsguyvaibhav888@gmail.com" class="hover:text-cyan-300 transition" aria-label="Email">
+          <i class="fa-solid fa-envelope"></i>
+        </a>
+      </div>
+
+      <div class="text-xs text-slate-600">
+        © 2026 Vaibhav Sudhakar Ingle
+      </div>
+    </div>
+  </footer>
+
+  <!-- BACK TO TOP -->
+  <a id="backTop" href="#home" class="back-top fixed bottom-6 right-6 z-40 w-11 h-11 rounded-xl glass flex items-center justify-center text-cyan-300 hover:text-white hover:border-cyan-400/50" aria-label="Back to top">
+    <i class="fa-solid fa-arrow-up"></i>
+  </a>
+
+  <script>
+    // Typing effect
+    const typingElement = document.getElementById("typing");
+    const roles = [
+      "AWS DevOps Engineer",
+      "DevSecOps Enthusiast",
+      "GitOps Practitioner"
+    ];
+
+    let roleIndex = 0;
+    let charIndex = 0;
+    let deleting = false;
+
+    function typeRole() {
+      const current = roles[roleIndex];
+
+      if (!deleting) {
+        typingElement.textContent = current.substring(0, charIndex + 1);
+        charIndex++;
+
+        if (charIndex === current.length) {
+          deleting = true;
+          setTimeout(typeRole, 1700);
+          return;
+        }
+      } else {
+        typingElement.textContent = current.substring(0, charIndex - 1);
+        charIndex--;
+
+        if (charIndex === 0) {
+          deleting = false;
+          roleIndex = (roleIndex + 1) % roles.length;
+        }
+      }
+
+      setTimeout(typeRole, deleting ? 45 : 85);
+    }
+
+    typeRole();
+
+    // Navbar
+    const navbar = document.getElementById("navbar");
+    const backTop = document.getElementById("backTop");
+
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 40) {
+        navbar.classList.add("nav-scrolled");
+      } else {
+        navbar.classList.remove("nav-scrolled");
+      }
+
+      if (window.scrollY > 700) {
+        backTop.classList.add("show");
+      } else {
+        backTop.classList.remove("show");
+      }
+    });
+
+    // Mobile menu
+    const menuBtn = document.getElementById("menuBtn");
+    const mobileMenu = document.getElementById("mobileMenu");
+
+    menuBtn.addEventListener("click", () => {
+      mobileMenu.classList.toggle("open");
+      const icon = menuBtn.querySelector("i");
+
+      if (mobileMenu.classList.contains("open")) {
+        icon.classList.remove("fa-bars");
+        icon.classList.add("fa-xmark");
+      } else {
+        icon.classList.remove("fa-xmark");
+        icon.classList.add("fa-bars");
+      }
+    });
+
+    document.querySelectorAll(".mobile-link").forEach(link => {
+      link.addEventListener("click", () => {
+        mobileMenu.classList.remove("open");
+        const icon = menuBtn.querySelector("i");
+        icon.classList.remove("fa-xmark");
+        icon.classList.add("fa-bars");
+      });
+    });
+
+    // Reveal animations
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("show");
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.08
+    });
+
+    document.querySelectorAll(".reveal").forEach(element => {
+      revealObserver.observe(element);
+    });
+
+    // Counters
+    const counterObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+
+        const counter = entry.target;
+        const target = Number(counter.dataset.target);
+        let current = 0;
+        const duration = 1200;
+        const start = performance.now();
+
+        function update(now) {
+          const progress = Math.min((now - start) / duration, 1);
+          const eased = 1 - Math.pow(1 - progress, 3);
+          current = Math.floor(eased * target);
+          counter.textContent = current;
+
+          if (progress < 1) {
+            requestAnimationFrame(update);
+          } else {
+            counter.textContent = target;
+          }
+        }
+
+        requestAnimationFrame(update);
+        counterObserver.unobserve(counter);
+      });
+    }, { threshold: 0.6 });
+
+    document.querySelectorAll(".counter").forEach(counter => {
+      counterObserver.observe(counter);
+    });
+
+    // Project 3D tilt
+    document.querySelectorAll("[data-tilt]").forEach(card => {
+      card.addEventListener("mousemove", (e) => {
+        if (window.innerWidth < 900) return;
+
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        const rotateX = ((y / rect.height) - 0.5) * -5;
+        const rotateY = ((x / rect.width) - 0.5) * 5;
+
+        card.style.transform =
+          `perspective(900px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px)`;
+      });
+
+      card.addEventListener("mouseleave", () => {
+        card.style.transform = "";
+      });
+    });
+
+    // Navigation scroll spy
+    const sections = document.querySelectorAll("main section[id]");
+    const navLinks = document.querySelectorAll(".nav-link");
+
+    const sectionObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          navLinks.forEach(link => {
+            link.classList.remove("text-cyan-300");
+            link.classList.add("text-slate-400");
+
+            if (link.getAttribute("href") === "#" + entry.target.id) {
+              link.classList.remove("text-slate-400");
+              link.classList.add("text-cyan-300");
             }
-        });
-    </script>
+          });
+        }
+      });
+    }, {
+      rootMargin: "-35% 0px -55% 0px"
+    });
+
+    sections.forEach(section => sectionObserver.observe(section));
+
+    // Prevent placeholder GitHub links from jumping
+    document.querySelectorAll(".github-placeholder").forEach(link => {
+      link.addEventListener("click", (event) => {
+        event.preventDefault();
+        alert("GitHub repository link will be added here.");
+      });
+    });
+
+    // Lightweight star field
+    const canvas = document.getElementById("stars");
+    const ctx = canvas.getContext("2d");
+
+    let stars = [];
+    let width = 0;
+    let height = 0;
+
+    function resizeCanvas() {
+      width = canvas.width = window.innerWidth * devicePixelRatio;
+      height = canvas.height = window.innerHeight * devicePixelRatio;
+      canvas.style.width = window.innerWidth + "px";
+      canvas.style.height = window.innerHeight + "px";
+
+      ctx.setTransform(devicePixelRatio, 0, 0, devicePixelRatio, 0, 0);
+
+      stars = Array.from({
+        length: Math.min(100, Math.floor(window.innerWidth / 12))
+      }, () => ({
+        x: Math.random() * window.innerWidth,
+        y: Math.random() * window.innerHeight,
+        r: Math.random() * 1.2 + .2,
+        speed: Math.random() * .15 + .03,
+        alpha: Math.random() * .5 + .15
+      }));
+    }
+
+    function drawStars() {
+      ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+
+      stars.forEach(star => {
+        star.y += star.speed;
+
+        if (star.y > window.innerHeight) {
+          star.y = -5;
+          star.x = Math.random() * window.innerWidth;
+        }
+
+        ctx.beginPath();
+        ctx.arc(star.x, star.y, star.r, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(148,163,184,${star.alpha})`;
+        ctx.fill();
+      });
+
+      requestAnimationFrame(drawStars);
+    }
+
+    resizeCanvas();
+    drawStars();
+
+    window.addEventListener("resize", resizeCanvas);
+  </script>
 </body>
 </html>
