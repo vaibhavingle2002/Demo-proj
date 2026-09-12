@@ -1,421 +1,469 @@
-from pathlib import Path
-
-html = r'''<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Vaibhav Sudhakar Ingle — AWS DevOps Engineer portfolio. Cloud, Kubernetes, Terraform, DevSecOps, GitOps and FinOps projects.">
-<meta name="theme-color" content="#070b18">
-<title>Vaibhav Ingle | AWS DevOps Engineer</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vaibhav Sudhakar Ingle | AWS DevOps Engineer</title>
+    <meta name="description" content="Portfolio of Vaibhav Sudhakar Ingle, AWS DevOps Engineer specializing in Kubernetes, Terraform, CI/CD, and Cloud Infrastructure.">
+    
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Tailwind CSS (CDN for zero-build GitHub Pages deployment) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['Fira Code', 'monospace'],
+                    },
+                    colors: {
+                        aws: '#FF9900',
+                        k8s: '#326CE5',
+                        tf: '#844FBA',
+                        darkBg: '#070b14',
+                        cardBg: 'rgba(15, 23, 42, 0.6)'
+                    }
+                }
+            }
+        }
+    </script>
 
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap');
+    <style>
+        body { background-color: #070b14; color: #e2e8f0; }
+        
+        /* Glassmorphism & Cards */
+        .glass {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(56, 189, 248, 0.1);
+        }
+        
+        .project-card {
+            transition: all 0.3s ease;
+        }
+        .project-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(56, 189, 248, 0.4);
+            box-shadow: 0 10px 30px -10px rgba(56, 189, 248, 0.15);
+        }
 
-:root{
-  --bg:#070b18;
-  --bg2:#0b1022;
-  --card:rgba(17,24,48,.72);
-  --card2:rgba(22,31,62,.62);
-  --text:#f5f7ff;
-  --muted:#aab4d0;
-  --line:rgba(255,255,255,.10);
-  --cyan:#39d9ff;
-  --blue:#5b7cff;
-  --purple:#a970ff;
-  --green:#43e6a0;
-  --pink:#ff6ec7;
-  --yellow:#ffd166;
-  --shadow:0 24px 70px rgba(0,0,0,.35);
-}
+        /* Neon Gradients */
+        .text-gradient {
+            background: linear-gradient(to right, #38bdf8, #818cf8, #FF9900);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
 
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{
-  font-family:Inter,system-ui,sans-serif;
-  background:
-    radial-gradient(circle at 15% 10%,rgba(91,124,255,.16),transparent 28%),
-    radial-gradient(circle at 85% 18%,rgba(169,112,255,.14),transparent 26%),
-    radial-gradient(circle at 50% 75%,rgba(57,217,255,.08),transparent 30%),
-    var(--bg);
-  color:var(--text);
-  line-height:1.65;
-  overflow-x:hidden;
-}
-body:before{
-  content:"";position:fixed;inset:0;pointer-events:none;opacity:.035;
-  background-image:linear-gradient(rgba(255,255,255,.5) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.5) 1px,transparent 1px);
-  background-size:50px 50px;z-index:-2;
-}
-a{color:inherit;text-decoration:none}
-.container{width:min(1160px,92%);margin:auto}
-.nav{
-  position:fixed;top:0;left:0;right:0;z-index:100;
-  background:rgba(7,11,24,.72);backdrop-filter:blur(18px);
-  border-bottom:1px solid var(--line);
-}
-.nav-inner{height:74px;display:flex;align-items:center;justify-content:space-between}
-.logo{font-family:"Space Grotesk";font-weight:700;font-size:1.2rem}
-.logo span{color:var(--cyan)}
-.nav-links{display:flex;gap:25px;align-items:center}
-.nav-links a{font-size:.88rem;color:var(--muted);transition:.25s}
-.nav-links a:hover{color:#fff}
-.menu{display:none;background:none;border:1px solid var(--line);color:#fff;border-radius:10px;padding:8px 11px;font-size:1.1rem}
+        /* Floating Animation */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        .animate-float { animation: float 6s ease-in-out infinite; }
+        
+        /* Grid Background */
+        .bg-grid {
+            background-size: 40px 40px;
+            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 100%);
+            -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 100%);
+        }
 
-.hero{min-height:100vh;display:flex;align-items:center;padding:120px 0 70px;position:relative}
-.hero-grid{display:grid;grid-template-columns:1.25fr .75fr;gap:60px;align-items:center}
-.eyebrow{
-  display:inline-flex;align-items:center;gap:9px;padding:8px 13px;border:1px solid rgba(57,217,255,.24);
-  border-radius:999px;background:rgba(57,217,255,.07);color:#b9f3ff;font-size:.78rem;font-weight:600;
-  margin-bottom:22px
-}
-.dot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 16px var(--green)}
-h1{font-family:"Space Grotesk";font-size:clamp(3rem,7vw,5.8rem);line-height:.96;letter-spacing:-.06em}
-.gradient{
-  background:linear-gradient(100deg,var(--cyan),#6f8cff 45%,var(--purple));
-  -webkit-background-clip:text;background-clip:text;color:transparent
-}
-.hero h2{font-size:clamp(1.25rem,2.5vw,1.75rem);margin:22px 0 14px}
-.hero p{color:var(--muted);max-width:700px;font-size:1.04rem}
-.buttons{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
-.btn{
-  padding:12px 18px;border-radius:12px;border:1px solid var(--line);font-weight:700;font-size:.9rem;
-  transition:.25s;display:inline-flex;align-items:center;gap:8px
-}
-.btn.primary{border:0;background:linear-gradient(100deg,var(--blue),var(--purple));box-shadow:0 12px 35px rgba(91,124,255,.25)}
-.btn:hover{transform:translateY(-3px)}
-.btn.secondary{background:rgba(255,255,255,.035)}
-
-.hero-card{
-  position:relative;padding:26px;border:1px solid var(--line);border-radius:26px;background:linear-gradient(145deg,rgba(27,37,74,.85),rgba(10,15,34,.82));
-  box-shadow:var(--shadow);overflow:hidden
-}
-.hero-card:before{
-  content:"";position:absolute;width:180px;height:180px;border-radius:50%;background:var(--purple);
-  filter:blur(80px);opacity:.22;right:-70px;top:-70px
-}
-.terminal{font-family:monospace;font-size:.82rem}
-.term-top{display:flex;gap:7px;margin-bottom:22px}
-.term-dot{width:10px;height:10px;border-radius:50%;background:#ff6b81}.term-dot:nth-child(2){background:#ffd166}.term-dot:nth-child(3){background:#43e6a0}
-.code-line{margin:10px 0;color:#cad3ee}.key{color:#7bdfff}.value{color:#b891ff}.green{color:#62efb1}
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:22px}
-.stat{padding:14px;border-radius:14px;background:rgba(255,255,255,.045);border:1px solid var(--line);text-align:center}
-.stat strong{display:block;font-size:1.2rem}.stat small{color:var(--muted);font-size:.68rem}
-
-section{padding:100px 0}
-.section-head{margin-bottom:38px}
-.kicker{font-size:.76rem;letter-spacing:.18em;text-transform:uppercase;color:var(--cyan);font-weight:800}
-h3{font-family:"Space Grotesk";font-size:clamp(2rem,4vw,3rem);margin-top:7px;letter-spacing:-.04em}
-.section-head p{color:var(--muted);max-width:720px;margin-top:10px}
-
-.about-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:25px}
-.card{
-  background:var(--card);border:1px solid var(--line);border-radius:22px;padding:27px;box-shadow:var(--shadow);
-  transition:transform .3s,border-color .3s
-}
-.card:hover{transform:translateY(-5px);border-color:rgba(91,124,255,.35)}
-.card p{color:var(--muted)}
-.focus-list{display:grid;gap:12px}
-.focus{padding:14px 15px;border-radius:14px;background:rgba(255,255,255,.035);border:1px solid var(--line)}
-.focus b{display:block}.focus span{font-size:.82rem;color:var(--muted)}
-
-.skills{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
-.skill-card h4{font-size:1rem;margin-bottom:9px}.skill-card p{font-size:.87rem}
-.skill-icon{font-size:1.25rem;margin-bottom:8px}
-
-.projects{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
-.project{position:relative;overflow:hidden}
-.project:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(135deg,rgba(57,217,255,.04),transparent 45%,rgba(169,112,255,.05))}
-.project-number{font-family:"Space Grotesk";font-size:.75rem;color:var(--cyan);font-weight:700}
-.project h4{font-family:"Space Grotesk";font-size:1.35rem;line-height:1.25;margin:10px 0 12px}
-.project p{font-size:.87rem}
-.project ul{margin:15px 0 18px;padding-left:18px;color:var(--muted);font-size:.83rem}
-.project li{margin:5px 0}
-.tags{display:flex;flex-wrap:wrap;gap:7px;margin:15px 0}
-.tag{padding:5px 9px;border-radius:999px;font-size:.68rem;font-weight:700;background:rgba(91,124,255,.09);border:1px solid rgba(91,124,255,.18);color:#c9d4ff}
-.project-links{display:flex;gap:10px;margin-top:15px}
-.project-links a{font-size:.78rem;color:#dce4ff;font-weight:700}
-
-.experience{display:grid;gap:18px}
-.timeline{position:relative;padding-left:26px;border-left:1px solid rgba(91,124,255,.3)}
-.timeline:before{content:"";position:absolute;width:10px;height:10px;border-radius:50%;background:var(--cyan);left:-5px;top:29px;box-shadow:0 0 18px var(--cyan)}
-.meta{color:var(--cyan);font-size:.78rem;font-weight:700}.role{font-family:"Space Grotesk";font-size:1.35rem;margin:3px 0}
-.timeline p,.timeline li{color:var(--muted);font-size:.88rem}.timeline ul{padding-left:18px;margin-top:10px}
-
-.contact{
-  text-align:center;padding:65px 30px;border:1px solid var(--line);border-radius:28px;
-  background:linear-gradient(135deg,rgba(91,124,255,.11),rgba(169,112,255,.09),rgba(57,217,255,.06))
-}
-.contact p{max-width:650px;margin:12px auto;color:var(--muted)}
-.contact-links{display:flex;justify-content:center;flex-wrap:wrap;gap:12px;margin-top:25px}
-.contact-link{padding:11px 15px;border:1px solid var(--line);border-radius:12px;background:rgba(0,0,0,.15);font-size:.82rem}
-
-footer{padding:35px 0;border-top:1px solid var(--line);text-align:center;color:#7e89a7;font-size:.76rem}
-
-.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
-.reveal.show{opacity:1;transform:none}
-#top{position:fixed;right:22px;bottom:22px;width:42px;height:42px;border-radius:50%;border:1px solid var(--line);background:rgba(17,24,48,.85);color:#fff;display:none;place-items:center;z-index:50}
-#top.show{display:grid}
-
-@media(max-width:850px){
-  .nav-links{display:none;position:absolute;top:74px;left:0;right:0;padding:18px 5%;background:rgba(7,11,24,.96);border-bottom:1px solid var(--line);flex-direction:column;align-items:flex-start}
-  .nav-links.open{display:flex}.menu{display:block}
-  .hero-grid,.about-grid{grid-template-columns:1fr}.hero{padding-top:120px}
-  .hero-card{max-width:650px}
-  .skills,.projects{grid-template-columns:1fr}
-  section{padding:75px 0}
-}
-@media(max-width:520px){
-  h1{font-size:3.05rem}.hero p{font-size:.92rem}.stats{grid-template-columns:1fr}
-  .card{padding:21px}.buttons .btn{width:100%;justify-content:center}
-}
-</style>
+        /* Terminal Window */
+        .terminal-header { background: #1e1e1e; border-bottom: 1px solid #333; }
+        .terminal-body { background: #000; color: #0f0; }
+    </style>
 </head>
+<body class="antialiased relative overflow-x-hidden selection:bg-aws selection:text-white">
 
-<body>
-<nav class="nav">
-  <div class="container nav-inner">
-    <a class="logo" href="#home">VAIBHAV<span>.</span></a>
-    <button class="menu" id="menu" aria-label="Open menu">☰</button>
-    <div class="nav-links" id="navLinks">
-      <a href="#about">About</a><a href="#skills">Skills</a><a href="#projects">Projects</a>
-      <a href="#experience">Experience</a><a href="#education">Education</a><a href="#contact">Contact</a>
-    </div>
-  </div>
-</nav>
+    <!-- Background Grid -->
+    <div class="fixed inset-0 bg-grid z-[-1] pointer-events-none"></div>
 
-<main>
-<section class="hero" id="home">
-  <div class="container hero-grid">
-    <div class="reveal">
-      <div class="eyebrow"><span class="dot"></span> Open to AWS DevOps / Cloud opportunities</div>
-      <h1>VAIBHAV<br><span class="gradient">INGLE</span></h1>
-      <h2>AWS DevOps Engineer</h2>
-      <p>Building scalable, secure, and automated cloud infrastructure with AWS, Kubernetes, Terraform, DevSecOps, and GitOps.</p>
-      <div class="buttons">
-        <a class="btn primary" href="#projects">Explore Projects →</a>
-        <a class="btn secondary" href="https://github.com/vaibhavingle2002" target="_blank" rel="noopener">GitHub ↗</a>
-        <a class="btn secondary" href="https://www.linkedin.com/in/vaibhav-ingle-82518a274/" target="_blank" rel="noopener">LinkedIn ↗</a>
-      </div>
-    </div>
-    <div class="hero-card reveal">
-      <div class="terminal">
-        <div class="term-top"><span class="term-dot"></span><span class="term-dot"></span><span class="term-dot"></span></div>
-        <div class="code-line"><span class="key">role</span>: <span class="value">"AWS DevOps Engineer"</span></div>
-        <div class="code-line"><span class="key">cloud</span>: <span class="value">"AWS"</span></div>
-        <div class="code-line"><span class="key">containers</span>: <span class="value">"Docker + Kubernetes"</span></div>
-        <div class="code-line"><span class="key">iac</span>: <span class="value">"Terraform"</span></div>
-        <div class="code-line"><span class="key">delivery</span>: <span class="value">"CI/CD + GitOps"</span></div>
-        <div class="code-line"><span class="key">security</span>: <span class="value">"DevSecOps"</span></div>
-        <div class="code-line"><span class="key">focus</span>: <span class="green">"Automation & Reliability"</span></div>
-        <div class="stats">
-          <div class="stat"><strong>☁</strong><small>AWS</small></div>
-          <div class="stat"><strong>☸</strong><small>K8s</small></div>
-          <div class="stat"><strong>⚙</strong><small>IaC</small></div>
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 glass border-b-0 border-white/10 top-0 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="#" class="text-xl font-bold font-mono tracking-tighter">
+                    <span class="text-aws">V</span><span class="text-white">I</span><span class="text-k8s text-2xl leading-none">.</span>
+                </a>
+                <div class="hidden md:flex space-x-8 text-sm font-medium">
+                    <a href="#about" class="text-gray-300 hover:text-white transition-colors">About</a>
+                    <a href="#skills" class="text-gray-300 hover:text-white transition-colors">Skills</a>
+                    <a href="#projects" class="text-gray-300 hover:text-white transition-colors">Projects</a>
+                    <a href="#experience" class="text-gray-300 hover:text-white transition-colors">Experience</a>
+                </div>
+                <div class="hidden md:flex space-x-4">
+                    <a href="https://github.com/vaibhavingle2002" target="_blank" class="text-gray-400 hover:text-white text-xl transition"><i class="fab fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/vaibhav-ingle-82518a274/" target="_blank" class="text-gray-400 hover:text-white text-xl transition"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  </div>
-</section>
+    </nav>
 
-<section id="about">
-<div class="container">
-  <div class="section-head reveal"><div class="kicker">01 — About</div><h3>Engineering with automation in mind.</h3></div>
-  <div class="about-grid">
-    <div class="card reveal">
-      <p>I'm an <b>AWS DevOps Engineer</b> focused on cloud infrastructure, automation, Kubernetes, CI/CD, Infrastructure as Code, DevSecOps, and GitOps.</p><br>
-      <p>I build hands-on projects using <b>AWS, Docker, Kubernetes/EKS, Terraform, Jenkins, Argo CD, Prometheus, Grafana, and security scanning tools</b>, with an emphasis on repeatable deployments, observability, security, and reliability.</p><br>
-      <p>I've also worked on <b>AWS FinOps automation</b> using Cost Explorer, Lambda, EventBridge and SES, and deployed a containerized RAG application on ECS Fargate.</p><br>
-      <p>Working knowledge of <b>Microsoft Azure</b> with a growing interest in cloud-native, multi-cloud and platform engineering.</p>
-    </div>
-    <div class="card reveal">
-      <div class="focus-list">
-        <div class="focus"><b>☁️ Cloud Infrastructure</b><span>AWS · Azure · Networking · IAM</span></div>
-        <div class="focus"><b>☸️ Kubernetes Platforms</b><span>EKS · Helm · Workloads · Storage</span></div>
-        <div class="focus"><b>🔐 DevSecOps</b><span>Security scanning · CI/CD gates</span></div>
-        <div class="focus"><b>🔄 GitOps</b><span>Argo CD · Declarative delivery</span></div>
-        <div class="focus"><b>💰 FinOps</b><span>Cost analysis · Automation · Reporting</span></div>
-      </div>
-    </div>
-  </div>
-</div>
-</section>
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center pt-20 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                
+                <!-- Left Content -->
+                <div>
+                    <div class="inline-flex items-center space-x-2 glass px-3 py-1.5 rounded-full text-xs font-mono text-green-400 mb-6 border-green-400/20">
+                        <span class="relative flex h-2 w-2">
+                          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                          <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                        </span>
+                        <span>OPEN TO AWS DEVOPS / CLOUD OPPORTUNITIES</span>
+                    </div>
+                    
+                    <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight mb-4">
+                        Vaibhav Sudhakar Ingle
+                    </h1>
+                    <h2 class="text-2xl md:text-3xl font-mono text-gradient mb-6">
+                        > AWS DevOps Engineer_
+                    </h2>
+                    
+                    <p class="text-gray-400 text-lg mb-8 max-w-xl leading-relaxed">
+                        Building scalable, secure, and automated cloud infrastructure with AWS, Kubernetes, Terraform, DevSecOps, and GitOps.
+                    </p>
+                    
+                    <div class="flex flex-wrap gap-4">
+                        <a href="#projects" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-all shadow-lg shadow-blue-500/25">
+                            View Cloud Projects
+                        </a>
+                        <a href="mailto:devopsguyvaibhav888@gmail.com" class="glass text-white px-6 py-3 rounded-lg font-medium hover:bg-white/10 transition-all">
+                            Contact Me
+                        </a>
+                    </div>
+                </div>
 
-<section id="skills">
-<div class="container">
-  <div class="section-head reveal"><div class="kicker">02 — Technical Skills</div><h3>The stack I work with.</h3></div>
-  <div class="skills">
-    <div class="card skill-card reveal"><div class="skill-icon">☁️</div><h4>Cloud</h4><p>AWS · Microsoft Azure</p></div>
-    <div class="card skill-card reveal"><div class="skill-icon">⚡</div><h4>AWS Services</h4><p>EC2 · S3 · VPC · IAM · ALB · ECS · EKS · ECR · RDS · Route 53 · Lambda · CloudFormation · CloudWatch · SSM</p></div>
-    <div class="card skill-card reveal"><div class="skill-icon">☸️</div><h4>Containers & Kubernetes</h4><p>Docker · Docker Compose · Kubernetes · Amazon EKS · Helm · RBAC · HPA · PV/PVC · StorageClass</p></div>
-    <div class="card skill-card reveal"><div class="skill-icon">🔄</div><h4>CI/CD & GitOps</h4><p>Jenkins · GitHub Actions · AWS CodePipeline · CodeBuild · CodeDeploy · Argo CD · Maven</p></div>
-    <div class="card skill-card reveal"><div class="skill-icon">🏗️</div><h4>Infrastructure as Code</h4><p>Terraform (HCL) · Ansible</p></div>
-    <div class="card skill-card reveal"><div class="skill-icon">🔐</div><h4>DevSecOps</h4><p>SonarQube · Trivy · OWASP Dependency-Check</p></div>
-    <div class="card skill-card reveal"><div class="skill-icon">📊</div><h4>Monitoring & Observability</h4><p>Prometheus · Grafana · CloudWatch · ELK Stack</p></div>
-    <div class="card skill-card reveal"><div class="skill-icon">⌨️</div><h4>Scripting & Systems</h4><p>Python · Boto3 · Bash/Shell · YAML · Linux · Git</p></div>
-  </div>
-</div>
-</section>
+                <!-- Right Visual: Terminal -->
+                <div class="hidden lg:block animate-float">
+                    <div class="rounded-xl overflow-hidden glass shadow-2xl border border-gray-700">
+                        <div class="terminal-header px-4 py-2 flex items-center space-x-2">
+                            <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                            <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                            <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                            <span class="text-xs text-gray-400 ml-2 font-mono">vaibhav@aws-cloud: ~</span>
+                        </div>
+                        <div class="terminal-body p-6 font-mono text-sm h-64 flex flex-col justify-end">
+                            <p class="text-gray-400">$ kubectl get nodes --show-labels</p>
+                            <p class="text-white">NAME             STATUS   ROLES    AGE   VERSION   LABELS</p>
+                            <p class="text-gray-300">ip-192-168-1-10  Ready    <none>   45d   v1.28.2   env=production,tier=compute</p>
+                            <p class="text-gray-300">ip-192-168-1-11  Ready    <none>   45d   v1.28.2   env=production,tier=compute</p>
+                            <br>
+                            <p class="text-gray-400">$ terraform apply -auto-approve</p>
+                            <p class="text-tf">Apply complete! Resources: 14 added, 0 changed, 0 destroyed.</p>
+                            <p class="text-aws mt-2">Outputs: <br> load_balancer_dns = "prod-alb-892374.ap-south-1.elb.amazonaws.com"</p>
+                            <p class="text-green-400 mt-2"><span class="animate-pulse">_</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<section id="projects">
-<div class="container">
-  <div class="section-head reveal"><div class="kicker">03 — Featured Projects</div><h3>Hands-on cloud engineering.</h3><p>Architecture, automation, security and observability — built as practical projects.</p></div>
-  <div class="projects">
+    <!-- Skills Section -->
+    <section id="skills" class="py-20 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h3 class="text-3xl font-bold mb-12 flex items-center">
+                <i class="fas fa-microchip text-aws mr-4"></i> Technical Arsenal
+            </h3>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Cloud & Infrastructure -->
+                <div class="glass p-6 rounded-xl border border-white/5">
+                    <h4 class="text-lg font-semibold mb-4 text-aws"><i class="fab fa-aws mr-2"></i> Cloud & Compute</h4>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-white/5 rounded-md text-sm text-gray-300 border border-white/10">AWS</span>
+                        <span class="px-3 py-1 bg-white/5 rounded-md text-sm text-gray-300 border border-white/10">Azure</span>
+                        <span class="px-3 py-1 bg-white/5 rounded-md text-sm text-gray-300 border border-white/10">EC2</span>
+                        <span class="px-3 py-1 bg-white/5 rounded-md text-sm text-gray-300 border border-white/10">VPC</span>
+                        <span class="px-3 py-1 bg-white/5 rounded-md text-sm text-gray-300 border border-white/10">Lambda</span>
+                        <span class="px-3 py-1 bg-white/5 rounded-md text-sm text-gray-300 border border-white/10">ECS Fargate</span>
+                        <span class="px-3 py-1 bg-white/5 rounded-md text-sm text-gray-300 border border-white/10">CloudFormation</span>
+                    </div>
+                </div>
 
-    <article class="card project reveal">
-      <span class="project-number">01 / AWS · RAG · FINOPS</span>
-      <h4>RAG Application on ECS Fargate with Automated FinOps</h4>
-      <p>Containerized document retrieval application deployed on AWS with automated cloud cost analysis and email reporting.</p>
-      <ul>
-        <li>Dockerized and deployed on ECS Fargate behind ALB.</li>
-        <li>Pinecone-powered vector document retrieval.</li>
-        <li>EventBridge → Lambda → Cost Explorer cost workflow.</li>
-        <li>HTML cost dashboard delivered through SES.</li>
-        <li>Secrets Manager and CloudWatch integrated.</li>
-      </ul>
-      <div class="tags"><span class="tag">ECS Fargate</span><span class="tag">Docker</span><span class="tag">Lambda</span><span class="tag">EventBridge</span><span class="tag">FinOps</span><span class="tag">Pinecone</span></div>
-      <div class="project-links">
-        <a href="https://github.com/vaibhavingle2002/RAG-Application-AWS-ECS-Fargate-FinOps" target="_blank" rel="noopener">GitHub ↗</a>
-      </div>
-    </article>
+                <!-- Containers & Orchestration -->
+                <div class="glass p-6 rounded-xl border border-white/5">
+                    <h4 class="text-lg font-semibold mb-4 text-k8s"><i class="fas fa-dharmachakra mr-2"></i> Orchestration</h4>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-white/5 rounded-md text-sm text-gray-300 border border-white/10">Kubernetes</span>
+                        <span class="px-3 py-1 bg-white/5 rounded-md text-sm text-gray-300 border border-white/10">Amazon EKS</span>
+                        <span class="px-3 py-1 bg-white/5 rounded-md text-sm text-gray-300 border border-white/10">Docker</span>
+                        <span class="px-3 py-1 bg-white/5 rounded-md text-sm text-gray-300 border border-white/10">Helm</span>
+                        <span class="px-3 py-1 bg-white/5 rounded-md text-sm text-gray-300 border border-white/10">RBAC / HPA</span>
+                    </div>
+                </div>
 
-    <article class="card project reveal">
-      <span class="project-number">02 / EKS · DEVSECOPS · GITOPS</span>
-      <h4>Cloud-Native DevSecOps Pipeline — Tetris</h4>
-      <p>End-to-end CI/CD and GitOps workflow for Kubernetes deployment on Amazon EKS.</p>
-      <ul>
-        <li>Jenkins CI/CD with automated build and deployment.</li>
-        <li>SonarQube, OWASP Dependency-Check and Trivy.</li>
-        <li>EKS infrastructure provisioned using Terraform.</li>
-        <li>Argo CD GitOps delivery and rollback workflows.</li>
-        <li>Prometheus and Grafana monitoring.</li>
-      </ul>
-      <div class="tags"><span class="tag">EKS</span><span class="tag">Terraform</span><span class="tag">Jenkins</span><span class="tag">Argo CD</span><span class="tag">Trivy</span><span class="tag">Grafana</span></div>
-      <div class="project-links"><a href="https://github.com/vaibhavingle2002" target="_blank" rel="noopener">GitHub ↗</a></div>
-    </article>
+                <!-- CI/CD & IaC -->
+                <div class="glass p-6 rounded-xl border border-white/5">
+                    <h4 class="text-lg font-semibold mb-4 text-tf"><i class="fas fa-code-branch mr-2"></i> CI/CD & IaC</h4>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-white/5 rounded-md text-sm text-gray-300 border border-white/10">Terraform</span>
+                        <span class="px-3 py-1 bg-white/5 rounded-md text-sm text-gray-300 border border-white/10">Jenkins</span>
+                        <span class="px-3 py-1 bg-white/5 rounded-md text-sm text-gray-300 border border-white/10">Argo CD</span>
+                        <span class="px-3 py-1 bg-white/5 rounded-md text-sm text-gray-300 border border-white/10">GitHub Actions</span>
+                        <span class="px-3 py-1 bg-white/5 rounded-md text-sm text-gray-300 border border-white/10">Ansible</span>
+                    </div>
+                </div>
 
-    <article class="card project reveal">
-      <span class="project-number">03 / AWS · TERRAFORM · 3-TIER</span>
-      <h4>Three-Tier AWS Infrastructure using Terraform</h4>
-      <p>Scalable AWS architecture designed and provisioned as Infrastructure as Code.</p>
-      <ul>
-        <li>VPC with public/private subnets and NAT Gateway.</li>
-        <li>EC2 application layer behind Application Load Balancer.</li>
-        <li>Multi-AZ RDS database architecture.</li>
-        <li>Security groups and IAM-based access controls.</li>
-        <li>CloudWatch monitoring and infrastructure visibility.</li>
-      </ul>
-      <div class="tags"><span class="tag">Terraform</span><span class="tag">VPC</span><span class="tag">EC2</span><span class="tag">ALB</span><span class="tag">RDS</span><span class="tag">CloudWatch</span></div>
-      <div class="project-links"><a href="https://github.com/vaibhavingle2002" target="_blank" rel="noopener">GitHub ↗</a></div>
-    </article>
+                <!-- DevSecOps & Monitoring -->
+                <div class="glass p-6 rounded-xl border border-white/5">
+                    <h4 class="text-lg font-semibold mb-4 text-red-400"><i class="fas fa-shield-alt mr-2"></i> DevSecOps & Obs.</h4>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-white/5 rounded-md text-sm text-gray-300 border border-white/10">SonarQube</span>
+                        <span class="px-3 py-1 bg-white/5 rounded-md text-sm text-gray-300 border border-white/10">Trivy</span>
+                        <span class="px-3 py-1 bg-white/5 rounded-md text-sm text-gray-300 border border-white/10">Prometheus</span>
+                        <span class="px-3 py-1 bg-white/5 rounded-md text-sm text-gray-300 border border-white/10">Grafana</span>
+                        <span class="px-3 py-1 bg-white/5 rounded-md text-sm text-gray-300 border border-white/10">CloudWatch</span>
+                        <span class="px-3 py-1 bg-white/5 rounded-md text-sm text-gray-300 border border-white/10">Python / Bash</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <article class="card project reveal">
-      <span class="project-number">04 / KUBERNETES · SECURITY · CI/CD</span>
-      <h4>Cloud-Native DevSecOps Pipeline — 2048</h4>
-      <p>Containerized application delivery workflow combining CI/CD, security scanning and Kubernetes monitoring.</p>
-      <ul>
-        <li>Jenkins CI/CD pipeline for automated deployment.</li>
-        <li>SonarQube, OWASP Dependency-Check and Trivy.</li>
-        <li>Docker-based application containerization.</li>
-        <li>Kubernetes deployment and monitoring.</li>
-        <li>Prometheus and Grafana observability.</li>
-      </ul>
-      <div class="tags"><span class="tag">Jenkins</span><span class="tag">Docker</span><span class="tag">Kubernetes</span><span class="tag">SonarQube</span><span class="tag">Trivy</span><span class="tag">Prometheus</span></div>
-      <div class="project-links"><a href="https://github.com/vaibhavingle2002" target="_blank" rel="noopener">GitHub ↗</a></div>
-    </article>
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h3 class="text-3xl font-bold mb-12 flex items-center">
+                <i class="fas fa-network-wired text-k8s mr-4"></i> Cloud Architecture Projects
+            </h3>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
+                
+                <!-- Project 1 -->
+                <div class="glass project-card rounded-2xl p-8 border border-white/10 flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-start mb-4">
+                            <h4 class="text-xl font-bold text-white">RAG Application on AWS ECS Fargate with Automated FinOps</h4>
+                        </div>
+                        <p class="text-gray-400 text-sm mb-6 leading-relaxed">
+                            Containerized RAG document retrieval application deployed on serverless AWS ECS Fargate. Engineered an automated AWS cost monitoring and email reporting pipeline to track cluster and application expenditure.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-8">
+                            <span class="text-xs font-mono text-aws bg-aws/10 px-2 py-1 rounded">AWS ECS Fargate</span>
+                            <span class="text-xs font-mono text-blue-400 bg-blue-400/10 px-2 py-1 rounded">Docker</span>
+                            <span class="text-xs font-mono text-aws bg-aws/10 px-2 py-1 rounded">Lambda</span>
+                            <span class="text-xs font-mono text-green-400 bg-green-400/10 px-2 py-1 rounded">Cost Explorer API</span>
+                            <span class="text-xs font-mono text-yellow-400 bg-yellow-400/10 px-2 py-1 rounded">Python</span>
+                        </div>
+                    </div>
+                    <a href="https://github.com/vaibhavingle2002/RAG-Application-AWS-ECS-Fargate-FinOps" target="_blank" class="inline-flex items-center text-sm font-semibold text-white bg-white/5 hover:bg-white/10 px-4 py-2 rounded-lg transition-colors w-fit border border-white/10">
+                        <i class="fab fa-github mr-2"></i> VIEW ON GITHUB &rarr;
+                    </a>
+                </div>
 
-    <article class="card project reveal">
-      <span class="project-number">05 / DOCKER · REACT · NODE.JS</span>
-      <h4>ShopCI E-Commerce Platform</h4>
-      <p>Full-stack e-commerce application containerized for multi-service deployment and prepared for Kubernetes hosting.</p>
-      <ul>
-        <li>Node.js backend and React frontend containerization.</li>
-        <li>Docker Compose for multi-container development.</li>
-        <li>Application images pushed to Docker Hub.</li>
-        <li>Kubernetes namespace and MySQL persistent storage.</li>
-      </ul>
-      <div class="tags"><span class="tag">React</span><span class="tag">Node.js</span><span class="tag">MySQL</span><span class="tag">Docker</span><span class="tag">Kubernetes</span></div>
-      <div class="project-links"><a href="https://github.com/vaibhavingle2002/VaibhavsShopciProject" target="_blank" rel="noopener">GitHub ↗</a></div>
-    </article>
+                <!-- Project 2 -->
+                <div class="glass project-card rounded-2xl p-8 border border-white/10 flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-start mb-4">
+                            <h4 class="text-xl font-bold text-white">Cloud-Native DevSecOps Pipeline with GitOps — Tetris</h4>
+                        </div>
+                        <p class="text-gray-400 text-sm mb-6 leading-relaxed">
+                            End-to-end CI/CD pipeline for deploying a containerized Tetris application to Amazon EKS. Features automated security scanning and a pull-based GitOps deployment strategy for declarative infrastructure.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-8">
+                            <span class="text-xs font-mono text-k8s bg-k8s/10 px-2 py-1 rounded">AWS EKS</span>
+                            <span class="text-xs font-mono text-tf bg-tf/10 px-2 py-1 rounded">Terraform</span>
+                            <span class="text-xs font-mono text-red-400 bg-red-400/10 px-2 py-1 rounded">Argo CD</span>
+                            <span class="text-xs font-mono text-blue-300 bg-blue-300/10 px-2 py-1 rounded">Jenkins</span>
+                            <span class="text-xs font-mono text-purple-400 bg-purple-400/10 px-2 py-1 rounded">SonarQube & Trivy</span>
+                        </div>
+                    </div>
+                    <a href="https://github.com/vaibhavingle2002" target="_blank" class="inline-flex items-center text-sm font-semibold text-white bg-white/5 hover:bg-white/10 px-4 py-2 rounded-lg transition-colors w-fit border border-white/10">
+                        <i class="fab fa-github mr-2"></i> VIEW ON GITHUB &rarr;
+                    </a>
+                </div>
 
-  </div>
-</div>
-</section>
+                <!-- Project 3 -->
+                <div class="glass project-card rounded-2xl p-8 border border-white/10 flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-start mb-4">
+                            <h4 class="text-xl font-bold text-white">Three-Tier AWS Infrastructure using Terraform</h4>
+                        </div>
+                        <p class="text-gray-400 text-sm mb-6 leading-relaxed">
+                            Scalable, highly available three-tier AWS infrastructure provisioned entirely via modular Terraform code. Includes custom VPC networking, NAT gateways, ALB load balancing, EC2 auto-scaling, and managed RDS.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-8">
+                            <span class="text-xs font-mono text-tf bg-tf/10 px-2 py-1 rounded">Terraform</span>
+                            <span class="text-xs font-mono text-aws bg-aws/10 px-2 py-1 rounded">AWS VPC & EC2</span>
+                            <span class="text-xs font-mono text-aws bg-aws/10 px-2 py-1 rounded">ALB & RDS</span>
+                            <span class="text-xs font-mono text-gray-300 bg-gray-500/10 px-2 py-1 rounded">CloudWatch</span>
+                        </div>
+                    </div>
+                    <a href="https://github.com/vaibhavingle2002" target="_blank" class="inline-flex items-center text-sm font-semibold text-white bg-white/5 hover:bg-white/10 px-4 py-2 rounded-lg transition-colors w-fit border border-white/10">
+                        <i class="fab fa-github mr-2"></i> VIEW ON GITHUB &rarr;
+                    </a>
+                </div>
 
-<section id="experience">
-<div class="container">
-  <div class="section-head reveal"><div class="kicker">04 — Experience</div><h3>Professional experience.</h3></div>
-  <div class="experience">
-    <div class="card timeline reveal">
-      <div class="meta">MAR 2024 — SEP 2024</div>
-      <div class="role">AWS Cloud Engineer Intern</div>
-      <div class="meta">InternCertify</div>
-      <ul>
-        <li>Worked with AWS services including EC2, S3, RDS and Lambda.</li>
-        <li>Practiced application deployment and AWS infrastructure configuration.</li>
-        <li>Implemented serverless website hosting workflows.</li>
-        <li>Practiced blue-green deployment concepts for application releases.</li>
-        <li>Worked with Auto Scaling Groups and Target Groups for scalable deployments.</li>
-      </ul>
-    </div>
-  </div>
-</div>
-</section>
+                <!-- Project 4 -->
+                <div class="glass project-card rounded-2xl p-8 border border-white/10 flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-start mb-4">
+                            <h4 class="text-xl font-bold text-white">Cloud-Native DevSecOps Pipeline — 2048</h4>
+                        </div>
+                        <p class="text-gray-400 text-sm mb-6 leading-relaxed">
+                            Containerized 2048 application deployed on Kubernetes through a Jenkins-based pipeline. Shift-left security enforced with automated code analysis, dependency checking, and container vulnerability scanning.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-8">
+                            <span class="text-xs font-mono text-blue-300 bg-blue-300/10 px-2 py-1 rounded">Jenkins</span>
+                            <span class="text-xs font-mono text-k8s bg-k8s/10 px-2 py-1 rounded">Kubernetes</span>
+                            <span class="text-xs font-mono text-purple-400 bg-purple-400/10 px-2 py-1 rounded">Trivy</span>
+                            <span class="text-xs font-mono text-orange-400 bg-orange-400/10 px-2 py-1 rounded">Prometheus/Grafana</span>
+                        </div>
+                    </div>
+                    <a href="https://github.com/vaibhavingle2002" target="_blank" class="inline-flex items-center text-sm font-semibold text-white bg-white/5 hover:bg-white/10 px-4 py-2 rounded-lg transition-colors w-fit border border-white/10">
+                        <i class="fab fa-github mr-2"></i> VIEW ON GITHUB &rarr;
+                    </a>
+                </div>
+                
+                <!-- Project 5 -->
+                <div class="glass project-card rounded-2xl p-8 border border-white/10 flex flex-col justify-between md:col-span-2 lg:col-span-2">
+                    <div>
+                        <div class="flex justify-between items-start mb-4">
+                            <h4 class="text-xl font-bold text-white">ShopCI E-Commerce Platform</h4>
+                        </div>
+                        <p class="text-gray-400 text-sm mb-6 leading-relaxed max-w-3xl">
+                            Full-stack e-commerce application containerized using Docker and prepared for scalable Kubernetes deployment, backed by persistent MySQL storage architecture.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-8">
+                            <span class="text-xs font-mono text-blue-400 bg-blue-400/10 px-2 py-1 rounded">Docker Compose</span>
+                            <span class="text-xs font-mono text-k8s bg-k8s/10 px-2 py-1 rounded">Kubernetes</span>
+                            <span class="text-xs font-mono text-cyan-400 bg-cyan-400/10 px-2 py-1 rounded">React</span>
+                            <span class="text-xs font-mono text-green-500 bg-green-500/10 px-2 py-1 rounded">Node.js</span>
+                            <span class="text-xs font-mono text-blue-300 bg-blue-300/10 px-2 py-1 rounded">MySQL</span>
+                        </div>
+                    </div>
+                    <a href="https://github.com/vaibhavingle2002/VaibhavsShopciProject" target="_blank" class="inline-flex items-center text-sm font-semibold text-white bg-white/5 hover:bg-white/10 px-4 py-2 rounded-lg transition-colors w-fit border border-white/10">
+                        <i class="fab fa-github mr-2"></i> VIEW ON GITHUB &rarr;
+                    </a>
+                </div>
 
-<section id="education">
-<div class="container">
-  <div class="section-head reveal"><div class="kicker">05 — Education</div><h3>Education & training.</h3></div>
-  <div class="skills">
-    <div class="card reveal"><div class="meta">2025 — 2027</div><h4>Master of Computer Applications (MCA)</h4><p>Sant Gadge Baba Amravati University<br><b>SGPA: 7.56</b></p></div>
-    <div class="card reveal"><div class="meta">2022 — 2025</div><h4>Bachelor of Computer Applications (BCA)</h4><p>Sant Gadge Baba Amravati University<br><b>CGPA: 7.86 · Top Performer — 3 Years</b></p></div>
-    <div class="card reveal"><div class="meta">TRAINING</div><h4>DevOps with AWS Training</h4><p>Naresh IT, Hyderabad</p></div>
-  </div>
-</div>
-</section>
+            </div>
+        </div>
+    </section>
 
-<section id="contact">
-<div class="container">
-  <div class="contact reveal">
-    <div class="kicker">06 — Contact</div>
-    <h3>Let's build something reliable.</h3>
-    <p>Open to AWS DevOps, Cloud Infrastructure, Kubernetes, CI/CD and Platform Engineering opportunities.</p>
-    <div class="contact-links">
-      <a class="contact-link" href="mailto:devopsguyvaibhav888@gmail.com">✉ Email</a>
-      <a class="contact-link" href="tel:+919529458514">☎ Phone</a>
-      <a class="contact-link" href="https://www.linkedin.com/in/vaibhav-ingle-82518a274/" target="_blank" rel="noopener">in LinkedIn</a>
-      <a class="contact-link" href="https://github.com/vaibhavingle2002" target="_blank" rel="noopener">◉ GitHub</a>
-    </div>
-  </div>
-</div>
-</section>
-</main>
+    <!-- Experience & Education Section -->
+    <section id="experience" class="py-20 relative bg-black/40 border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-16">
+            
+            <!-- Experience -->
+            <div>
+                <h3 class="text-2xl font-bold mb-8 flex items-center">
+                    <i class="fas fa-briefcase text-tf mr-4"></i> Professional Experience
+                </h3>
+                <div class="relative pl-6 border-l border-white/20 space-y-10">
+                    
+                    <div class="relative">
+                        <div class="absolute -left-[33px] top-1 bg-darkBg border-2 border-tf w-4 h-4 rounded-full"></div>
+                        <h4 class="text-lg font-bold text-white">AWS Cloud Engineer Intern</h4>
+                        <div class="text-tf text-sm font-mono mb-3">InternCertify | March 2024 – September 2024</div>
+                        <p class="text-gray-400 text-sm leading-relaxed">
+                            Worked with AWS EC2, S3, RDS, and Lambda, practiced serverless application hosting and blue-green deployment concepts, and gained practical exposure to Auto Scaling Groups, Target Groups, AWS cloud infrastructure, and deployment workflows.
+                        </p>
+                    </div>
 
-<footer>
-  <div class="container">© <span id="year"></span> Vaibhav Sudhakar Ingle · AWS DevOps Engineer · Built with HTML, CSS & JavaScript</div>
-</footer>
+                </div>
+            </div>
 
-<a id="top" href="#home" aria-label="Back to top">↑</a>
+            <!-- Education & Certifications -->
+            <div>
+                <h3 class="text-2xl font-bold mb-8 flex items-center">
+                    <i class="fas fa-graduation-cap text-aws mr-4"></i> Education & Training
+                </h3>
+                <div class="relative pl-6 border-l border-white/20 space-y-8">
+                    
+                    <div class="relative">
+                        <div class="absolute -left-[33px] top-1 bg-darkBg border-2 border-aws w-4 h-4 rounded-full"></div>
+                        <h4 class="text-lg font-bold text-white">Master of Computer Applications (MCA)</h4>
+                        <div class="text-aws text-sm font-mono mb-1">Sant Gadge Baba Amravati University</div>
+                        <div class="text-gray-500 text-xs mb-2">2025 – 2027 | SGPA: 7.56</div>
+                    </div>
 
-<script>
-const menu=document.getElementById('menu');
-const nav=document.getElementById('navLinks');
-menu.addEventListener('click',()=>nav.classList.toggle('open'));
-document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',()=>nav.classList.remove('open')));
+                    <div class="relative">
+                        <div class="absolute -left-[33px] top-1 bg-darkBg border-2 border-aws w-4 h-4 rounded-full"></div>
+                        <h4 class="text-lg font-bold text-white">Bachelor of Computer Applications (BCA)</h4>
+                        <div class="text-aws text-sm font-mono mb-1">Sant Gadge Baba Amravati University</div>
+                        <div class="text-gray-500 text-xs mb-2">2022 – 2025 | CGPA: 7.86 (Top Performer)</div>
+                    </div>
 
-const observer=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('show')});
-},{threshold:.08});
-document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+                    <div class="relative">
+                        <div class="absolute -left-[33px] top-1 bg-darkBg border-2 border-green-400 w-4 h-4 rounded-full"></div>
+                        <h4 class="text-lg font-bold text-white">DevOps With AWS Training</h4>
+                        <div class="text-green-400 text-sm font-mono mb-1">Naresh IT, Hyderabad</div>
+                    </div>
 
-const topBtn=document.getElementById('top');
-window.addEventListener('scroll',()=>topBtn.classList.toggle('show',window.scrollY>600));
-document.getElementById('year').textContent=new Date().getFullYear();
-</script>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer / Contact -->
+    <footer id="contact" class="border-t border-white/10 pt-16 pb-8 relative overflow-hidden">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+            <h2 class="text-3xl font-bold mb-6">Let's Build Resilient Infrastructure Together</h2>
+            <p class="text-gray-400 mb-10 text-sm">
+                Open to AWS DevOps, Cloud Engineering, and SRE opportunities.
+            </p>
+            
+            <div class="flex flex-wrap justify-center gap-6 mb-12">
+                <a href="mailto:devopsguyvaibhav888@gmail.com" class="flex items-center space-x-2 text-gray-300 hover:text-white transition-colors bg-white/5 px-4 py-2 rounded-lg border border-white/10">
+                    <i class="fas fa-envelope text-aws"></i>
+                    <span>devopsguyvaibhav888@gmail.com</span>
+                </a>
+                <a href="tel:+919529458514" class="flex items-center space-x-2 text-gray-300 hover:text-white transition-colors bg-white/5 px-4 py-2 rounded-lg border border-white/10">
+                    <i class="fas fa-phone text-k8s"></i>
+                    <span>+91 9529458514</span>
+                </a>
+                <a href="https://www.linkedin.com/in/vaibhav-ingle-82518a274/" target="_blank" class="flex items-center space-x-2 text-gray-300 hover:text-white transition-colors bg-white/5 px-4 py-2 rounded-lg border border-white/10">
+                    <i class="fab fa-linkedin text-blue-500"></i>
+                    <span>LinkedIn</span>
+                </a>
+                <a href="https://github.com/vaibhavingle2002" target="_blank" class="flex items-center space-x-2 text-gray-300 hover:text-white transition-colors bg-white/5 px-4 py-2 rounded-lg border border-white/10">
+                    <i class="fab fa-github text-white"></i>
+                    <span>GitHub</span>
+                </a>
+            </div>
+
+            <p class="text-gray-600 text-xs">
+                &copy; 2026 Vaibhav Sudhakar Ingle. Built with code, containers, and cloud.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Smooth scroll for nav links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Navbar blur on scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                nav.classList.add('shadow-lg', 'bg-darkBg/90');
+                nav.classList.remove('border-transparent');
+            } else {
+                nav.classList.remove('shadow-lg', 'bg-darkBg/90');
+                nav.classList.add('border-transparent');
+            }
+        });
+    </script>
 </body>
 </html>
-'''
-
-path = "/mnt/data/index.html"
-Path(path).write_text(html, encoding="utf-8")
-print(f"Created: {path}")
-print(f"Size: {Path(path).stat().st_size:,} bytes")
